@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{ECE1448: Problem Set 3a}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+\section*{Magnetization as a function of temperature}
+From degenerate pertubation theory, the energy correction from the applied magnetic field $B$ is governed by the following equation:
+\begin{align*}
+ \frac{e\hbar B}{2m_e}[H'][A]=W'[A]
+\end{align*} 
+Where the elements of $[H']$:
+\begin{align*}
+	H'_{mn}=\int \psi*_{0m}L_z\psi_{0n}dV
+\end{align*}
+This yields the following eigenvalue problem:
+\[
+  \frac{e\hbar B}{2m_e}
+ \begin{bmatrix}
+  1 & 0 & 0\\
+  0 & 0  & 0\\
+  0 & 0 & -1 
+ \end{bmatrix}
+ \begin{bmatrix}
+  A_{1} \\
+  A_{0} \\
+  A_{-1} 
+ \end{bmatrix}=W'
+ \begin{bmatrix}
+  A_{1} \\
+  A_{0} \\
+  A_{-1} 
+ \end{bmatrix}
+\]
+The eigenvalues are found from solving the cubic equation:
+\begin{align*}
+	\frac{e\hbar B}{2m_e}(1-W')(0-W')(-1-W')=0
+\end{align*}
+The splitting of the degeneracy results in three distinct energy states (The lower energy being in direction of $B$):
+\begin{align*}
+         W'_{1}&=-1.7365E-05 [eV]\\
+         W'_0&=  0.0000 [eV]\\
+         W'_{-1}&=  1.7365E-05 [eV]
+\end{align*}
+The Maxwell-Boltzmann distribution has the form:
+\begin{align*}
+	N_i&=\frac{Nexp(-W_i/kT)}{\sum_iexp(-W_i/kT)}\\
+	W_i&=W_0+W'_i 	
+\end{align*}
+The $exp(W_0/kT)$ will cancel in the numerator and denominator, giving:
+\begin{align*}
+	N_i&=\frac{Nexp(-W'_i/kT)}{\sum_iexp(-W'_i/kT)}\\
+\end{align*}
+Substituting in $W'_i={-1.7365E-05,0,1.7365E-05}K$ and repeating the calcution for $T={300,77,4.2}K$:
+\\
+\\
+\begin{table} [h!]
+ \begin{center}
+  \begin{tabular}{| l |l |l |l|}
+  \hline
+  $N_i$ & $T=300$ & $T=77$& $T=4.2K$\\
+  \hline
+   $N_{-1}$& 3.3356&    3.3421&    3.4945\\ \hline
+   $N_0$& 3.3333&    3.3333&    3.3308\\ \hline
+   $N_{1}$& 3.3311&    3.3246&    3.1747\\ \hline
+  \end{tabular}
+  \caption{Distribution particles into the three energies (all values are to be multiplied by $1^{23}$}
+ \end{center}
+\end{table}
+\\
+Recalling the eigenvalues of $L_z$, the average z-component of angular momentum for a given temperature is:
+\begin{align*}
+	\bar{\langle L_z \rangle}&=\frac{\sum_i N_i\langle L_{zi} \rangle}{N}\\
+				 &=\frac{N_{-1}\times(1)+N_{0}\times(0)+N_{1}\times(-1)}{N}	
+\end{align*}
+Therefore, the macroscopic z-component of magnetization for a given temperature is:
+\begin{align*}
+\vec{\mu_z}&=\frac{\bar{\langle L_z \rangle} QN}{2m_e}
+\end{align*}
+\begin{table} [h!]
+ \begin{center}
+  \begin{tabular}{| l |l |}
+  \hline
+  $Temperature$ & $u_z [J/T]$\\
+  \hline
+   300& 0.0004153\\ \hline
+   77& 0.0016180\\ \hline
+   4.2& 0.029653\\ \hline
+  \end{tabular}
+\caption{Z-component of the magnetization}
+ \end{center}
+\end{table}
+
+\end{document}
+

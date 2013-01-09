@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+%\usepackage{pslatex}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336: Research Paper Summary}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newtheorem{mydef}{Thereom}
+\numberwithin{equation}{section}
+\linespread{2.0}
+
+\begin{document}
+Understanding thermal energy transport in light emitting diodes (LEDs) and photovoltaics is necessary to improve device performance. With a higher understanding of the dynamics of energy transfer at the nano-scale, we can begin the engineer solutions with specific applications in mind. Elucidating these dynamics begins with examining the behaviour of energy carriers: electrons and phonons. Here we focus upon the heat carried via phonons with the hope that in the future such knowledge of these two carriers and their interaction will lead to improved efficiencies in the aforementioned devices.\\
+Phonons, often interpreted as quasi-particles with finite lifetimes representing the quantization of lattice vibrations, manifest themselves (in any non-zero temperature solid) as heat is transferred through a solid. Some of the more interesting phenomena involving phonons include joule heating in semiconductor devices [1] and the early theory of high temperature superconductivity [2]. These carriers of heat can be observed experimentally through Raman Scattering and Inelastic Neutron Scattering [3]. Furthermore, from such experiments, we can extract basic properties, that offer insight into the dynamics, of phonons. Each phonon, associated with a normal mode of vibration of the lattice of interest, is related by three properties: the lifetime of its existence (a measure of the anharmonicity of the interatomic potential), the group velocity and the specific heat unique to each mode. In order to be able to control the behaviour of phonons, it is necessary to develop approaches through which the properties of these carriers can be predicted.\\
+An example of such an approach was used by D. P. Sellan to predict thermal transport in thin-film silicon. Sellan used empirical potentials to determine the interatomic force constants. The force constants were then used in lattice dynamics calculations to predict these phonon properties [4]. Under the harmonic approximation, the group velocities and the specific heats are obtainable with sufficient accuracy. The lifetimes are estimated by taking the derivatives of the higher order terms of the empirical potential as a perturbation of the harmonic potential.\\
+The use of these empirical potentials leads to an inherent inaccuracy in the generated properties as information concerning the lifetime is not correctly encoded, thereby presenting the impetus of studying phonons from first principle methods. At the moment, the most popular approach is to use density functional perturbation theory [5,6] to calculate the exact interatomic potential (and hence the required force constants), from which the phonon lifetimes can be extracted, exemplified through the work of Broido et al [7] and later Esfarjani et al [8]. Although not with caveats, the elegance of DFPT will become clear through an example calculation.\\
+Combining the phonon properties extracted from DFPT with the hierarchical approach outlined by Sellan, a complete picture of the thermal energy transfer in nano-structured systems can be constructed.\\
+\newpage
+\begin{spacing}{1.0}
+\small
+\noindent[1] E. Pop, ASME Conf. Proc. ENIC2008-53050, 129-132 (2008).\newline
+[2] P. Monthoux, D, Pines, G.G. Lonzarich, Nature \textbf{450}, 1177 (2007).\newline
+[3] A. Debernardi, ``Anharmonic Porperties of Semiconductors from Density-Functional Perturbation Theory", \textit{Thesis} (1995).\newline
+[4] D. P. Sellan, J. E. Turney, A. J. H. McGaughey and C. H. Amon, J. Appl. Phys. \textbf{108}, 113524 (2010).\newline
+[5] S. Baroni, S. de Gironcoli, A. Dal Corso, and P. Giannozzi, Rev. Mod. Phys. \textbf{73}, 515 (2001).\newline
+[6] D. S. Sholl and J. A. Steckel, \textit{Density Functional Theory: A Practical Introduction}, Wiley, (2009).\newline
+[7] K. Esfarjani, G. Chen, Phys. Rev. B. \textbf{84}, 085204 (2011).\newline
+[8] D. A. Broido, M. Malorny, G. Birner, Natalio Mingo, and D. A. Stewart, Appl. Phys. Lett. \textbf{91}, 231922 (2007).\newline
+
+\end{spacing}
+\end{document}
+

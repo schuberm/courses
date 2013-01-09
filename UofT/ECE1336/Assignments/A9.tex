@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A9}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{itemize}
+\item a. As temperature increases, electrons become increasingly thermally excited. This thermal excitation allows some electrons to gain enough energy to move from the valence band to the conductance band (in the process, holes are formed), resulting in two partially filled energy bands. Since only partially filled bands contribute to conductivity, the increasing number of electrons in the conductance band and the holes in the valence band manifest an increased conductivity.
+\item b. Metals, on the other hand, begin with a partially filled energy band at zero temperature (by definition). When the atoms are vibrating about equilibrium, at an given moment in time, the lattice is aperiodic in shape, perturbing the electronic potential and scattering (or randomizing) the electrons. In metals, conduction electrons will be scattered by phonons, which are considered to be neutral and more massive than electrons, resulting in large momentum changes in the electron. Increasing temperature increases the number of phonons as well as the relative collisional cross-section, thus higher temperatures are associated with higher scattering rates and decrease in conductivity. Impurities in the material like dislocations or grain boundaries also act as scattering mechanisms because of the disturbance in the potential.
+\end{itemize}
+
+\section*{Problem 2}
+\begin{itemize}
+\item a. A direct band gap is defined as having the maxima of the lower (valence) band line up with the minima of the upper (conductance) band such that a photon with the energy of difference betweent the two points can excite an electron of peak momementum from the valence to the conductance band. An indirect band gap occurs when these bands do not line up and for momentum to be conserved, the electron excitation is mediated with a photon as a well as a phonon. Examining the excitation in terms of probabilistic occurence, an event which depends upon only a single quantity meeting the required activation energy is more likely to occur than an event which depends upon two quantities combining to meet the required energy and momentum, written simply as:
+\begin{align*}
+	P(A)>P(A)P(B)
+\end{align*}
+Therefore, direct band gap semicondutors are more effective at absorbing light than indirect band gap semiconductors. Examing the chart, V,W,X, Y have similar curves and higher absorption across a large spectrum of energy leading to a qualitative conclusion that these semiconductors have direct band gaps. Semiconductor Z has a lowe absorption compared to the other semiconductors across the shown energy spectrum indicating that Z has an indirect band gap.
+\item b. 
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{|l |l |} 
+  \hline
+ Semiconductor & Band Gap Energy (Ev) \\
+  \hline
+  V & 0.7 \\ \hline
+  W & 1.3\\ \hline
+  X & 1.4\\ \hline
+  Y & 1.75\\ \hline
+  Z & 1.1\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\item c. Z: Silicon (Si), X: Gallium arsenide (GaAs), V: Indium nitride (InN), W: Indium phosphide (InP), Y: Cadmium selenide (CdSe).
+\end{itemize}
+
+
+\end{document}
+

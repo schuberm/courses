@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 8}
+\rhead{999157923}
+
+\begin{document}
+
+\section*{Chapter 2 Question 4}
+\subsection*{Part A}
+The Helmholtz function for the surface is defined as
+\begin{align*}
+F&=U-TS \\
+&=T^{LV}S^{LV}+\gamma^{LV} A^{LV} + \sum_i \mu_i^{LV} N_i^{LV}-T^{LV}S^{LV}
+\end{align*}
+Dividing through by the area
+\begin{align*}
+f=\gamma^{LV} +\sum_i \mu_i^{LV} N_i^{LV}
+\end{align*}
+Since $\gamma^{LV}=\gamma^{LV}(T)$, f is function of and $T$ and $\mu_i^{LV}$.
+
+\subsection*{Part B}
+Constructing the Helmholtz function of the composite system
+\begin{align*}
+F^C&=U^C-T^CS^C\\
+&=U^L+U^V+U^{LV}+U^R-T^R(S^L+S^V+S^{LV}+S^R)
+\end{align*}
+From the energy and entropy postulates
+\begin{align*}
+0&=\Delta(U^L+U^V+U^{LV}+U^R)\\
+0&\ge \Delta(S^L+S^V+S^{LV}+S^R)
+\end{align*}
+Any arbitrary change would increase $F^{C}$, so at equilibrium, $F^{C}$ must be at a minimum.
+
+\subsection*{Part C}
+Taking virtual displacements of $F^C$
+\begin{align*}
+dF^C=\sum(\mu^V-\mu^L)dN^V+\sum(\mu^{LV}-\mu^L)dN^{LV}+(-4\pi R^2P^V+4\pi R^2P^L+8\pi\gamma^{LV}R)dR
+\end{align*}
+Thus the constraints for equilibrium are
+\begin{align*}
+\mu^V&=\mu^L=\mu^{LV}\\
+P^V &=P^L +\frac{2\gamma^{LV}}{R}
+\end{align*}
+
+\subsection*{Part D}
+Following the notes, we take the derivative of the difference between real and virtual states\begin{align*}
+\frac{dB(R,R_{\epsilon})-B_0}{dR}&=4\pi\gamma^{LV}(2R-\frac{3R^2}{R_{\epsilon}})=0\\
+R&=\frac{2R_{\epsilon}}{3}
+\end{align*}
+
+
+
+\end{document}

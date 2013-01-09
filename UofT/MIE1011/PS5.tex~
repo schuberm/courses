@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 5}
+\rhead{999157923}
+
+\begin{document}
+
+\section*{Question 9}
+Given that an ideal gas satisfies
+\begin{align*}
+\mu (T,P)=\mu (T,P_r) +\bar{R}T\ln \frac{P}{P_r}
+\end{align*}
+The Gibbs function is
+\begin{align*}
+G=N(\mu (T,P_r) +\bar{R}T\ln \frac{P}{P_r})
+\end{align*}
+The specific internal energy is
+\begin{align*}
+u=Ts-Pv+\mu
+\end{align*}
+and specific enthalpy is
+\begin{align*}
+h&=Ts-Pv+\mu+Pv\\
+&=Ts+\mu
+\end{align*}
+Entropy is
+\begin{align*}
+s&=-\frac{\partial \mu}{\partial T}\\
+ &=-\frac{\partial \mu(T,P_r)}{\partial T}-\bar{R}\ln \frac{P}{P_r}
+\end{align*}
+Substituting back into the equation for enthalpy gives
+\begin{align*}
+h&=-T\frac{\partial \mu(T,P_r)}{\partial T}-\bar{R}T\ln \frac{P}{P_r}+\mu (T,P_r) +\bar{R}T\ln \frac{P}{P_r}\\
+h&=-T\frac{\partial \mu(T,P_r)}{\partial T}+\mu (T,P_r)
+\end{align*}
+Thus $h$ is only a function of $T$ (but also $P_r$).
+
+\section*{Question 12}
+
+For an isotherm, $T_0$, the pressure as a function of specific volume is
+\begin{displaymath}
+   P(v) = \left\{
+     \begin{array}{lr}
+       P_1 + a(v_1 -v) & : v < v_1 (I)\\
+       v\frac{P_2-P_1}{v_2-v_1}+ \frac{v_2P_1-v_1P_2}{v_2-v_1}& : v_1 < v < v_2 (II)\\
+       P_2 + a(v_2 -v) & :  v_2 < v (III)\\
+     \end{array}
+   \right.
+\end{displaymath}
+Restricting $a$ to positive values, the criterion for the areas to be equal is only satisfied if the saturation pressure is the midpoint between $P_1$ and $P_2$ since the areas are defined by similar triangles.
+\begin{align*}
+P_s=\frac{P_1+P_2}{2}
+\end{align*}
+Following Table 1.3 in the notes, the stable regions are
+\begin{displaymath}
+     \begin{array}{lr}
+       P_s < P < P_2 & (I)\\
+& (III)\\
+     \end{array}
+   \right.
+\end{displaymath}
+
+\end{document}

@@ -1,0 +1,15 @@
+function v=berendsen(N,v,m,Tset,kb,ta)
+
+%Using the Berendsen Thermostat which does NOT produce NVT ensemble
+%http://www.pages.drexel.edu/~cfa22/msim/node43.html
+%I use this for single species.  Multiple species would need v=p./m
+mass=m(1,1);
+KE=ke(N,v,m);
+
+lambda = 
+
+tfac = 3*N*kb*Tset/mass;
+sumvsq=sum(sum(v.*v));
+fac = sqrt(tfac/sumvsq);
+v=v*fac;
+

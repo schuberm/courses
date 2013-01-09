@@ -1,0 +1,121 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,fullpage,parskip}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+
+\pagestyle{plain}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title{ECE1336 Semiconductor Physics: Assignment 2}
+\author{Samuel Huberman (ID 999157923)}
+\date{2011-09-22}
+\maketitle
+
+\section*{Problem 1}
+
+The primitive vectors of a simple cubic lattice are:
+\begin{align*}
+\vec{a_1}&=a[1,0,0]\\
+\vec{a_2}&=a[0,1,0]\\
+\vec{a_3}&=a[0,0,1]\\
+\end{align*}
+
+The reciprical primitive vectors are defined through the relations:
+\begin{align*}
+	b_1 &= 2\pi \frac {\vec{a_2} \times \vec{a_3}}{\vec{a_1} \cdot (\vec{a_2} \times \vec{a_3})}
+\\      b_2 &= 2\pi \frac {\vec{a_3} \times \vec{a_1}}{\vec{a_1} \cdot (\vec{a_2} \times \vec{a_3})}
+\\      b_3 &= 2\pi \frac {\vec{a_1} \times \vec{a_2}}{\vec{a_1} \cdot (\vec{a_2} \times \vec{a_3})}
+\end{align*}
+
+Substituting the initial primitive vectors yields:
+\\
+\begin{align*}
+\vec{b_1}&=\frac{2 \pi}{a}[1,0,0]\\
+\vec{b_2}&=\frac{2 \pi}{a}[0,1,0]\\
+\vec{b_3}&=\frac{2 \pi}{a}[0,0,1]\\
+\end{align*}
+\\
+The reciprocal primitive vectors forms another simple cubic lattice with an edge length of $\frac{2\pi}{a}$.
+
+\section*{Problem 2}
+Bragg's law relates the lattice spacing of a crystal to the wavelength and the incident angle of reflection.
+
+\begin{align*}
+2d\sin \theta =n \lambda.
+\end{align*}
+
+The criteria of constructive inteference is that the differences in paths taken by the radiation must be an integer multiple of the wavelength.
+
+For cubic systems, Bragg's law can be related to Miller indices of the Bravais lattices:
+
+\begin{align*}
+(\frac{\lambda}{2a})^2=\frac{\sin ^2 \theta}{h^2+k^2+l^2}
+\end{align*}
+
+To determine the planes that can be observed with a wavelenght of 3.1 Angstroms given a lattice spacing of 3.5 Angstroms with angle of incidence restriced from 0 to 90 degrees, we use any combination of values of h, k, and l that will obey the equality in the real plane.
+
+\begin{bmatrix}
+h & k & l\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 1 & 0\\
+0 & 1 & 1\\
+1 & 0 & 1\\
+1 & 1 & 1\\
+2 & 0 & 0\\
+0 & 2 & 0\\
+0 & 0 & 2\\
+2 & 1 & 0\\
+2 & 0 & 1\\
+0 & 2 & 1\\
+1 & 2 & 0\\
+0 & 1 & 2\\
+1 & 0 & 2\\
+\end{bmatrix}
+
+\section*{Problem 3}
+\begin{itemize}
+\item(a) The structure factor is given by:
+\begin{align*}
+F_K=\Sigma _j f_je^{-i \vec{K} \cdot\vec{r_j}}
+\end{align*}
+$j$ is a given atom in the unit cell, $f_j$ is the atomic form factor, $\vec{K}$ corresponds to a reciprocal lattice vector and $\vec{r_j}$ is the position of atom $j$.
+The general form a reciprocal lattice vector for a body-centered cubic structure is
+\begin{align*}
+\vec{K}=\frac{2\pi}{a}[h,k,l]
+\end{align*}
+The BCC basis:
+\begin{align*}
+\vec{r_0}&=\frac{a}{2}[1,1,1]\\
+\vec{r_1}&=[0,0,0]
+\end{align*}
+Substituting these relations into the structure factor equation, where $f$ is identical for every atom:
+\begin{align*}
+F_K&=f(e^{-i \frac{2\pi}{a}[h,k,l] \cdot [0,0,0]} + e^{-i \frac{2\pi}{a}[h,k,l] \cdot \frac{a}{2}[1,1,1]})
+\\ &=f(1+(-1)^{h+k+l})
+\end{align*}
+
+\item(b)The general form a reciprocal lattice vector for a face-centered cubic structure is
+\begin{align*}
+\vec{K}=\frac{2}{a}[h,k,l]
+\end{align*}
+The FCC basis:
+\begin{align*}\\
+\vec{r_0}&=[0,0,0]\\
+\vec{r_1}&=\frac{a}{2}[1,1,0]\\
+\vec{r_2}&=\frac{a}{2}[0,1,1]\\
+\vec{r_3}&=\frac{a}{2}[1,0,1]\\
+\end{align*}
+Substituting these relations into the structure factor equation, where $f$ is identical for every atom:
+\begin{align*}
+F_K &=f(e^{-i \frac{2}{a}[h,k,l] \cdot [0,0,0]} + e^{-i \frac{2}{a}[h,k,l] \cdot \frac{a}{2}[1,1,0]} + e^{-i \frac{2}{a}[h,k,l] \cdot \frac{a}{2}[0,1,1]}+ e^{-i\frac{2}{a}[h,k,l] \cdot \frac{a}{2}[1,0,1]})
+\\ &=f(1+(-1)^{h+k}+(-1)^{k+l}+(-1)^{h+l})
+\end{align*}
+\item(c) The peak from $[1,1,1]$ corresponds to a FCC structure. BCC structures resolve peaks when the Miller indices $h+k+l$ equals an even number, as shown in expression for the geometric structure factor.
+
+
+\end{itemize}
+\end{document}

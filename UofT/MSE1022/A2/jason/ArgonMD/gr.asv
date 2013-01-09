@@ -1,0 +1,37 @@
+function gr(t,x,L)
+%calculate the Radial Distribution function G(r)
+delr = L(1,1)/500;
+
+gr(1,:)=zeros(1,500);
+rho = N/(L(1,1)*L(1,2)*L(1,3));
+    
+    for i=1:N
+        for j=1:N
+            if i~=j 
+                for k=1:3
+                    rij(1,k) = x(i,k) - x(j,k);
+                        if rij(1,k) > (L(1,k)/2)
+                            rij(1,k) = rij(1,k) - L(1,k);
+                        end
+                        if rij(1,k) < (-L(1,k)/2)
+                            rij(1,k) = rij(1,k) + L(1,k);
+                        end
+                        r2 = rij(1,1)*rij(1,1) + rij(1,2)*rij(1,2) + rij(1,3)*rij(1,3);
+                        r = sqrt(r2);
+                        bin = floor(r/delr);
+                        gr(1,bin) = gr(1,bin)+1;
+                end
+            end
+        end
+    end
+    
+    for i=1:500
+        gr(1,i) = gr(1,i)/N;
+        gr(1,i) = gr(1,i)*(1/(rho*4*pi*(delr*delr*delr*(i*i +i +0.25))));
+    end
+    
+    %UNFINISHED: need to complete the output file
+    
+    %dlmwrite(
+    
+    

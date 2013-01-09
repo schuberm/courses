@@ -1,0 +1,65 @@
+Review of current approach of blocks
+
+Reason for extra peaks
+
+What can we do about it
+
+Spread in K
+
+Diffuse mismatch model
+
+kapitza conductance
+
+Coherent phonons
+
+Papers:
+-Jason
+-Duda/Hopkins
+-Patterson
+-Swartz and Pohl
+
+
+Thermal Boundary Resistance by Swartz
+-Kapitza was the first to report the measurement of the temperature drop between helium and a solid
+-Khalatnikov presented the acoustic mismatch model, modern version attributed to Mazo and Onsager
+-TBR is defined as the ratio of the temperature discontinuity at the interface to the power per unit area flowing across that interface
+-AMM predicted large TBR, while experiment was 2 orders of magnitude smaller
+-AMM predicted a pressure dependent TBR, but experiment found dependence only near 0.1K and at 1K was practically independent of pressure.
+-Challis, Dransfeld and Wilks (1961) investigated the effect of adsorbed helium at helium-solid interfaces, claimed that the layer acted as a "phonon-wavelength-dependent reflection-reducing coating, anologous to antireflection coating in optics", still not enough to predict the drop in observed TBR.
+-Reynolds and Anderson (1973, 1976, 1977) sought quantum explanantions, difference between the predicted and observed was proportional to the reduced quantum parameter of the solidified gas
+-Little (1959) extended the AMM to solid-solid interfaces, here the experimental TBR was higher than the AMM, other experiments showed much closer agreement.
+-Weis (1969) studied gold (15K-300K) on sapphire (4K), phonons from the gold to the substrate did not have time to be scattered back or to thermalize the substrate, good agreement with AMM.
+-Swartz (1987) found significant disagreement at T>40K between exp. and AMM.
+-"In view of the dramatic influence of surface preparation on the Kapitza resistance, should one
+not expect similar effects in the solid-solid work above a few K, where the heat is carried predominantly by phonons with frequencies exceeding 100 GHz?"
+-Swartz came up with DMM: "assumed that all
+phonons striking the interface are scattered once (elastically) and are then emitted into the adjoining substances with a probability proportional to the phonon density of states in the respective substances."
+-TBR was found to be insensitive to diffuse scattering at a solid-solid interface.
+-TBC depends on the number of phonons incident on the interface, the energy carried by each phonon, and the probability that the phonon is transmitted.
+-The temperature difference used in the definition of the thermal boundary conductivity (or resistance) is that between the photons (phonons) incident on the respective sides of the interface.
+
+-Location of thermometers is crucial, can act as a scattering site. When tranmission probability is on the order of unity, the thermometer can disturb phonon as much as the interface can.
+
+Assumptions
+-phonon either is transmitted or it is not
+-both sides of the interface is isotropic
+-transmission probabilities are independent of temperature
+-ignore anharmonic interactions
+
+AMM
+-phonons are plane waves that propagate in a continua (absent of lattice)
+-the phonon can specularly reflect, reflect and mode convert, refract,
+or refract and mode convert.
+-angles of reflection or refraction determined by Snell's law
+-Transmission probabilities are determined by the acoustic analog of the Fresnel equations
+-Each material has an acoustic impedance, the mass density multiplied by the phonon velocity
+
+DMM
+-Instead of complete specularity,
+
+
+
+
+
+
+

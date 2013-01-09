@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A10}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{itemize}
+\item a.
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{|l |l |} 
+  \hline
+ Semiconductor & Band Gap Energy (Ev) \\
+  \hline
+  V & 0.7 \\ \hline
+  W & 1.3\\ \hline
+  X & 1.4\\ \hline
+  Y & 1.75\\ \hline
+  Z & 1.1\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\item b.
+\end{itemize}
+
+\section*{Problem 2}
+
+\section*{Problem 3}
+
+\end{document}
+

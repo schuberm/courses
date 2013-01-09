@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{ECE1448: Problem Set 4}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+\section*{Fermi Energies}
+
+To determine the Fermi energy at a given temperature, the following cubic equation must be solved for $\epsilon_f$ where $n,W_1,W_2,W_3,N_1,N_2,N_3$ are known:
+\begin{align*}
+n=\frac{N_1}{e^{(W_1-\epsilon_f)/kT}+1}+\frac{N_2}{e^{(W_2-\epsilon_f)/kT}+1}+\frac{N_3}{e^{(W_3-\epsilon_f)/kT}+1}
+\end{align*}
+Since $W_1=0$, the first term on the right hand side approaches $N_1$:
+\begin{align*}
+n=N_1+\frac{N_2}{e^{(W_2-\epsilon_f)/kT}+1}+\frac{N_3}{e^{(W_3-\epsilon_f)/kT}+1}
+\end{align*}
+Which is a quadratic equation that can easily be solved:
+\begin{align*}
+\epsilon_f(174)&=0.8999 [eV]\\
+\epsilon_f(290)&=0.8476 [eV]
+\end{align*}
+Solving the original cubic using MATLAB gives identical results. The number of electrons in the energy level $W_3$:
+\begin{align*}
+n_3=\frac{N_3}{e^{(W_3-\epsilon_f(T))/kT}+1}
+\end{align*}
+For $T=174$:
+\begin{align*}
+n_3&=\frac{2E23}{e^{(1-0.8999)/(8.617E-5\times174)}+1}\\
+   &=2.5044E20 [cm^{-3}]
+\end{align*}
+For $T=290$:
+\begin{align*}
+n_3&=\frac{2E23}{e^{(1-0.8476)/(8.617E-5\times290)}+1}\\
+   &=4.4598E20 [cm^{-3}]
+\end{align*}
+Vacancies can be found from:
+\begin{align*}
+p_i=N_i(1-\frac{1}{e^{(W_i-\epsilon_f(T))/kT}+1})
+\end{align*}
+\begin{table} [!h]
+ \begin{center}
+  \begin{tabular}{| l |l |l|}
+  \hline
+  $State$ & $T=174K$& $T=290K$\\
+  \hline
+   $W_1 [cm^{-3}]$& 0 & 1.7764E8\\ \hline
+   $W_2 [cm^{-3}]$& 2.5083E20 &4.4538E20\\ \hline
+  \end{tabular}
+\caption{Vacancies in $W_1$ and $W_2$}
+ \end{center}
+\end{table}
+
+\end{document}

@@ -1,0 +1,160 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{ECE1448: Problem Set 3}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+\section*{Z-component of magnetization}
+In order to determine the z-component of magnetization, the given wavefunction is expanded in terms of the conventional eigenfunctions of the p-state:
+\begin{align*}
+ \psi_{11}&=\Sigma A_n \phi_n\\
+	  &=f(r)N(A_{11}\frac{(x+iy)}{\sqrt{2}}+A_{10}z+A_{1-1}\frac{(x-iy)}{\sqrt{2}})
+\end{align*} 
+Or equivalently in bra-ket notation:
+\begin{align*}
+ \mid\psi_{11}\rangle&=\Sigma A_n \mid \phi_n\rangle\\
+		     &=f(r)N(A_{11}\mid\phi_{11}\rangle+A_{10}\mid\phi_{10}\rangle+A_{1-1}\mid\phi_{1-1}\rangle)	
+\end{align*}
+Rearranging to solve for $A_n$ ($\langle \phi_n \mid=\mid \phi_n\rangle^{\dagger}$):
+\begin{align*}
+ A_n&=\langle \phi_n \mid \psi_{11}\rangle
+\end{align*}
+Substituting in the givens (ignoring the factor $f(r)N$ for the moment and including the \frac{1}{\sqrt{2}} in the expansion coefficient where necessary):
+\[A_{11}=\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & -i &0
+\end{bmatrix}
+\begin{bmatrix}
+  1+8i \\
+  -4+4i \\
+  8+i  
+ \end{bmatrix}
+=\frac{1}{\sqrt{2}}(5+12i)
+\]
+\[A_{10}=
+\begin{bmatrix}
+0 & 0 &1
+\end{bmatrix}
+\begin{bmatrix}
+  1+8i \\
+  -4+4i \\
+  8+i  
+ \end{bmatrix}
+=(8+i)
+\]
+\[A_{1-1}=\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 & i &0
+\end{bmatrix}
+\begin{bmatrix}
+  1+8i \\
+  -4+4i \\
+  8+i  
+ \end{bmatrix}
+=\frac{1}{\sqrt{2}}(-3+4i)
+\]
+Recalling the possible measurements of the $\tilde{L_z}$:
+\begin{align*}
+\tilde{L_z}\mid\phi_{11}\rangle&=\hbar\mid \phi_{11}\rangle\\
+\tilde{L_z}\mid\phi_{10}\rangle&=0\mid \phi_{10}\rangle\\
+\tilde{L_z}\mid\phi_{1-1}\rangle&=-\hbar\mid \phi_{1-1}\rangle
+\end{align*}
+We can now write the expression of the ensemble average of the expectation values of the z-component of angular momentum:
+\begin{align*}
+\bar{\langle L_z \rangle} &=\frac{\langle\psi_{11}\mid \tilde{L_z}\mid\psi_{11}\rangle}{\langle\psi_{11}\mid\psi_{11} \rangle}\\
+		       &=\frac{\mid A_{11}A_{11}^* \mid\langle\phi_{11}\mid \tilde{L_z}\mid\phi_{11}\rangle+\mid A_{10}A_{10}^*\mid \langle\phi_{10}\mid \tilde{L_z}\mid\phi_{10}\rangle+\mid A_{1-1}A_{1-1}^*\mid\langle\phi_{1-1}\mid \tilde{L_z}\mid\phi_{1-1}\rangle}{\mid A_{11}A_{11}^*\mid\langle\phi_{11}\mid\phi_{11}\rangle+\mid A_{10}A_{10}^*\mid\langle\phi_{10}\mid\phi_{10}\rangle+\mid A_{1-1}A_{1-1}^*\mid \langle\phi_{1-1}\mid\phi_{1-1}\rangle}\\
+                       &=\frac{169\hbar/2+65(0)-25\hbar/2}{65+25/2+169/2}\\
+                       &=\frac{144\hbar}{324}\\
+		       &=\frac{4\hbar}{9}
+\end{align*}
+Therefore, the macroscopic z-component of magnetization is:
+\begin{align*}
+\vec{\mu_z}&=\frac{\bar{\langle L_z \rangle} QN}{2m_e}\\
+     &=\frac{(10^{23})4\hbar e}{18m_e}\\
+     &=0.271 [J/T]
+\end{align*}
+
+\section*{Justification of quantum number selection}
+We perform a transformation of coordinates upon the wavefunction:
+\begin{align*}
+ \psi_{11}'&=T^{-1}\psi_{11}
+\end{align*}
+\[
+ \begin{bmatrix}
+  \psi_{x'} \\
+  \psi_{y'}  \\
+  \psi_{z'}   
+ \end{bmatrix}
+  =\frac{f(r)N}{9}
+ \begin{bmatrix}
+  1 & -4 & 8\\
+  8 & 4  & 1\\
+ -4 & 7 & 4 
+ \end{bmatrix}
+ \begin{bmatrix}
+  1+8i \\
+  -4+4i \\
+  8+i  
+ \end{bmatrix}
+\]
+\[
+\psi_{11}'=f(r)N
+\begin{bmatrix}
+  9 \\
+  9i  \\
+  0   
+ \end{bmatrix}
+\]
+\begin{align*}
+\psi_{11}'=9\sqrt{2}f(r)N\frac{(x+iy)}{\sqrt{2}}
+\end{align*}
+Because of the physical laws do not vary upon the application of a coordinate transformation and hence the physical significance of quantum numbers is invariant, we can say, independent of the frame of reference, the given wavefunction represents the p-state $l=1$ and $m=1$. 
+\end{document}
+Following the conventional procedure by operating upon ($\tilde{L_z}$) the wavefunction to calculate the measurable observable ($L_z$):
+\begin{align*}
+ \tilde{L_z'}\psi_{11}'&=L_z'\psi_{11}'\\
+	              &=\frac{\hbar}{i}(x'\frac{\partial}{\partial y'}-y'\frac{\partial}{\partial x'})(9x'+9iy')\\
+		      &= \hbar(9x'+9iy')f(r)N	
+\end{align*}
+The magnetic moment in the $z'$ direction is therefore:
+\begin{align*}
+ \mu_z'&=\frac{\hbar N Q}{2m_e}
+\end{align*}
+The magnetic moment in the $z$ direction is therefore:
+\begin{align*}
+ \mu_z&=T\mu_z'\
+\end{align*}
+\[
+=\frac{1}{9}
+ \begin{bmatrix}
+  1 & 8 & -4\\
+  -4 & 4  & 7\\
+  8 & 1 & 4 
+ \end{bmatrix}
+ \begin{bmatrix}
+  0 \\
+  0  \\
+  \frac{\hbar N Q}{2m_e}   
+ \end{bmatrix}
+\]
+\[
+\mu_z=\frac{1}{9}
+ \frac{\hbar N Q}{2m_e}   
+ \begin{bmatrix}
+  -4 \\
+  7  \\
+  4 \\
+ \end{bmatrix}
+\]
+Where $N=10^{23}$.

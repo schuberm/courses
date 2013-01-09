@@ -1,0 +1,32 @@
+# gnuplot script for generating stress-strain curve
+set term postscript enhanced
+set output 'se_curve.eps'
+set xlabel 'Strain'
+set ylabel 'Stress (MPa)'
+set grid 
+erate1=0.00001
+erate2=0.000005
+erate3=0.000001
+f1(x)=E1*x
+f2(x)=E2*x
+f3(x)=E3*x
+#
+set style line 1 lt 1 lw 1 pt 3 linecolor rgb "red"
+set style line 2 lt 1 lw 1 pt 3 linecolor rgb "green"
+set style line 3 lt 1 lw 1 pt 3 linecolor rgb "blue"
+#
+#plot '< head -70 log_1E9.txt' u ($1*erate1):(-$7/10) title 'Strain Rate 1E9' w l,\
+'< head -120 log_5E8.txt' u ($1*erate2):(-$7/10) title 'Strain Rate 5E8' w l,\
+'log_1E8.txt' u ($1*erate3):(-$7/10) title 'Strain Rate 1E8' w l
+
+fit f1(x) '< head -50 run_1E9.txt' u ($1*erate1):(-$7/10) via E1
+fit f2(x) '< head -80 run_5E8.txt' u ($1*erate2):(-$7/10) via E2
+fit f3(x) '< head -300 run_1E8.txt' u ($1*erate3):(-$7/10)  via E3
+
+#plot '< head -50 log_1E9.txt' u ($1*erate1):(-$7/10) title 'Strain Rate 1E9' w l ls 1,f1(x) title 'Linear Fit 1E9' ls 1,'< head -100 log_5E8.txt' u ($1*erate2):(-$7/10) title 'Strain Rate 5E8' w l ls 2,f2(x) title 'Linear Fit 5E8' ls 2,'log_1E8.txt' u ($1*erate3):(-$7/10) title 'Strain Rate 1E8' w l ls 3,f3(x) title 'Linear Fit 1E8' ls 3
+
+plot '< head -75 run_1E9.txt' u ($1*erate1):(-$7/10) title 'Strain Rate 1E9' w l ls 1,f1(x) title 'Linear Fit 1E9' ls 1,'< head -150 run_5E8.txt' u ($1*erate2):(-$7/10) title 'Strain Rate 5E8' w l ls 2,f2(x) title 'Linear Fit 5E8' ls 2,'< head -725 run_1E8.txt' u ($1*erate3):(-$7/10) title 'Strain Rate 1E8' w l ls 3,f3(x) title 'Linear Fit 1E8' ls 3
+
+#plot 'log_1E9.txt' u ($1*erate1):(-$7/10) title 'Strain Rate 1E9' w l,\
+'log_5E8.txt' u ($1*erate2):(-$7/10) title 'Strain Rate 5E8' w l,\
+'log_1E8.txt' u ($1*erate3):(-$7/10) title 'Strain Rate 1E8' w l

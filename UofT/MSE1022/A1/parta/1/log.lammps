@@ -1,0 +1,60 @@
+LAMMPS (29 Jan 2012)
+# Deformation and stress-strain curve for Au nanowire
+# Basic settings
+units metal
+atom_style atomic
+boundary m m p
+# Geometry
+lattice fcc 4.08 origin 0 0 0 orient z 1 1 0 orient x 0 0 -1 orient y -1 1 0
+Lattice spacing in x,y,z = 4.08 5.76999 5.76999
+region box block 0 10 0 5 0 40 units lattice side in
+create_box 1 box
+Created orthogonal box = (0 0 0) to (40.8 28.85 230.8)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 box
+Created 16310 atoms
+region 1  prism 5.1 10.0 0 5 -1 1000 10 0 0
+region 2  prism -1.0 4.9 0 5 -1 1000 -10 0 0
+region 3  prism 14.9 20.0 0 5 -1 1000 -10 0 0
+region 4  prism -20 -4.5 0 5 -1 1000 10 0 0
+group del1 region 1
+1600 atoms in group del1
+group del2 region 2
+2000 atoms in group del2
+group del3 region 3
+2155 atoms in group del3
+group del4 region 4
+2586 atoms in group del4
+##### Trim corners
+delete_atoms group del1
+Deleted 1600 atoms, new total = 14710
+delete_atoms group del2
+Deleted 2000 atoms, new total = 12710
+delete_atoms group del3
+Deleted 2155 atoms, new total = 10555
+delete_atoms group del4
+Deleted 2555 atoms, new total = 8000
+# Specify inter-atomic potential
+pair_style eam
+pair_coeff * * Au_u3.eam 
+neighbor 1.5 bin
+neigh_modify every 1 delay 1
+# Thermal equilibrium at 300K
+velocity all create 300 20199349 dist gaussian
+velocity all zero linear
+velocity all zero angular
+thermo 200
+thermo_style custom step atoms temp pe lx ly lz pzz press
+thermo_modify lost warn norm yes flush yes
+timestep 0.005 #ps
+dump 1 all cfg 20000 initialpos.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 1 all custom 20000 pos.dump id type x y z
+#fix 1 all npt temp 300.0 300.0 10.0 aniso NULL NULL NULL NULL 0.0 0.0 10.0 drag 1.0
+fix 1 all npt temp 300.0 300.0 10.0 z 0.0 0.0 10.0 drag 2.0
+run 20000
+Memory usage per processor = 4.84478 Mbytes
+Step Atoms Temp PotEng Lx Ly Lz Pzz Press 
+       0     8000    299.99383   -3.7767455         40.8    28.850057    230.79965   -24030.629   -20049.338 
+     200     8000    206.77914   -3.7651206         40.8    28.849957    228.06698    940.80907   -1532.0225 
+     400     8000    210.57592   -3.7657425         40.8    28.896071    229.28161   -89.225746   -503.07664 
+     600     8000    209.48924   -3.7653676         40.8    29.030572    230.02329    -5474.527   -4052.0446 

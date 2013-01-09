@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 3}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+\section*{Question 6}
+
+From the fact the fundamental relation for a simple-material is first order homogenous and that 
+\begin{align*}
+S^A=S^B=C(U^2VN)^{1/4}
+\end{align*} 
+the addition of A and B to an enclosed container is analogous to the scenario of A and B separated by a non-fixed, diathermal permeable piston. Thus the new fundamental relation is
+\begin{align*}
+S=S_A+S_B=C(U_A^2V_AN_A)^{1/4}+C(U_B^2V_BN_B)^{1/4}
+\end{align*}
+with the following constraints
+\begin{align*}
+U_T=U_A+U_B\\
+V_T=V_A+V_B\\
+N_T=N_A+N_B
+\end{align*}
+
+\section*{Question 8}
+
+Given
+\begin{align*}
+S_i=C(N_1+N_2)+(N_1+N_2)R\ln\left(\frac{U^{3/2}V}{(N_1+N_2)^{5/2}}\right)-N_1R\ln\left(\frac{N_1}{N_1+N_2}\right)-N_2R\ln\left(\frac{N_2}{N_1+N_2}\right)
+\end{align*}
+We can write the overall entropy of the container
+\small
+\begin{align*}
+S=&S_A+S_B\\
+ =&C(N_1^A+N_2^A)+(N_1^A+N_2^A)R\ln\left(\frac{U_A^{3/2}V^A}{(N_1^A+N_2^A)^{5/2}}\right)-N_1^AR\ln\left(\frac{N_1^A}{N_1^A+N_2^A}\right)-N_2^AR\ln\left(\frac{N_2^A}{N_1^A+N_2^A}\right)\\&+C(N_1^B+N_2^B)+(N_1^B+N_2^B)R\ln\left(\frac{U_B^{3/2}V^B}{(N_1^B+N_2^B)^{5/2}}\right)-N_1^BR\ln\left(\frac{N_1^B}{N_1^B+N_2^B}\right)-N_2^BR\ln\left(\frac{N_2^B}{N_1^B+N_2^B}\right)
+\end{align*}
+\normalsize
+The system is subject to the following constraints
+\begin{align*}
+V^A=&V^B=5 [L]\\
+V=&V^A+V^B=10 [L]\\
+N_2^A=&1 [mole]\\
+N_2^B=&0.75 [mole]\\
+N=&N_1^A+N_2^A+N_1^B+N_2^B=3.5 [mole]\\
+U=&U_A+U_B
+\end{align*}
+Taking derivatives (i.e.: virtual displacements)
+\begin{align*}
+\frac{\partial S}{\partial N_1^A}&=\frac{\mu_1^A}{T}=C+R\ln\frac{V^AU_A^{\frac{3}{2}}}{(N_1^A+N_2^A)^{\frac{5}{2}}}-R\ln\frac{N_1^A}{N_1^A+N_2^A}-\frac{5}{2}R\\
+\frac{\partial S}{\partial N_1^B}&=\frac{\mu_1^B}{T}=C+R\ln\frac{V^BU_B^{\frac{3}{2}}}{(N_1^B+N_2^B)^{\frac{5}{2}}}-R\ln\frac{N_1^B}{N_1^B+N_2^B}-\frac{5}{2}R\\
+\frac{\partial S}{\partial U^A}&=\frac{1}{T^A}=\frac{3R(N_1^A+N_2^A)}{2U^A}\\
+\frac{\partial S}{\partial V^A}&=\frac{P^A}{T^A}=\frac{R(N_1^A+N_2^A)}{V^A}
+\end{align*}
+At equilibrium, we must have $\mu_1^A=\mu_1^B$, thus we can write
+\begin{align*}
+\ln\frac{V^A(\frac{3RT}{2})^{3/2}}{(N_1^A)}&=\ln\frac{V^B(\frac{3RT}{2})^{3/2}}{(N_1^B)}\\
+\ln(N_1^A)&=\ln(N_1^B)
+\end{align*}
+From the conservation of moles, we find
+\begin{align*}
+N_1^A&=N_1^B=\frac{N-N_2^A-N_2^B}{2}\\
+=&0.875 [mole]
+\end{align*}
+From the conservation of energy (no heat lost to the surroundings), the equilibrium temperature is the same on both sides of the piston
+\begin{align*}
+U=&\frac{3RT^A(N_1^A+N_2^A)}{2}+\frac{3RT^A(N_1^A+N_2^A)}{2}=\frac{3RT(N_1^A+N_2^A+N_1^B+N_2^B)}{2}\\
+T=&\frac{T^A(N_1^A+N_2^A)+T^A(N_1^A+N_2^A)}{N_1^A+N_2^A+N_1^B+N_2^B}\\
+=&\frac{320(1.75)+250(1.75)}{3.5}\\
+=&285K
+\end{align*}
+The pressures are obtained from the equations of state
+\begin{align*}
+P^A&=\frac{RT(N_1^A+N_2^A)}{V^A}\\
+&=\frac{285R(1.875)}{5*10^{-3}}\\
+&=888.5[kPa]\\
+P^B&=\frac{RT(N_1^B+N_2^B)}{V^B}\\
+&=\frac{285R(1.625)}{5*10^{-3}}\\
+&=770.0[kPa]
+\end{align*}
+
+
+\begin{comment}
+\begin{align*}
+\frac{3P_AV_A}{2}=U_A
+\end{align*}
+Substituting the previous expression and setting $\frac{\partial S}{\partial N_1^i}=0$
+\begin{align*}
+0=&C+R\ln\frac{V^A(\frac{3P^AV^A}{2})^{\frac{3}{2}}}{(N_1^A+N_2^A)^{\frac{5}{2}}}-R\ln\frac{N_1^A}{N_1^A+N_2^A}-\frac{5}{2}R\\
+0=&C+R\ln\frac{V^B(\frac{3P^BV^B}{2})^{\frac{3}{2}}}{(N_1^B+N_2^B)^{\frac{5}{2}}}-R\ln\frac{N_1^B}{N_1^B+N_2^B}-\frac{5}{2}R\\
+\end{align*}
+Using $N=N_1^A+N_2^A+N_1^B+N_2^B$ and $P^A=P^B$ and $V^A=V^B$ 
+\begin{align*}
+R\ln\frac{V^A(\frac{3P^AV^A}{2})^{\frac{3}{2}}}{(N_1^A+N_2^A)^{\frac{5}{2}}}-R\ln\frac{N_1^A}{N_1^A+N_2^A}=R\ln\frac{V^B(\frac{3P^BV^B}{2})^{\frac{3}{2}}}{(N_1^B+N_2^B)^{\frac{5}{2}}}-R\ln\frac{N_1^B}{N_1^B+N_2^B}\\
+\end{align*}
+\end{comment}
+\end{document}

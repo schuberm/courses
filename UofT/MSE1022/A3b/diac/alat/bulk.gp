@@ -1,0 +1,30 @@
+# gnuplot script for generating stress-strain curve
+set term postscript enhanced
+set output 'bulk.eps'
+set xlabel 'Lattice Constant [Bohr]'
+set ylabel 'Energy [Ry]'
+set grid 
+
+set style line 1 lt 1 lw 2 pt 3 linecolor rgb "red"
+set style line 2 lt 1 lw 2 pt 3 linecolor rgb "green"
+set style line 3 lt 1 lw 1 pt 3 linecolor rgb "blue"
+
+f1(x)=a1 + b1*x + c1*x**2
+f2(x)=a2 + b2*x + c2*x**2 + d2*x**3 + e2*x**4 + f2*x**5
+
+
+#E(x)=E0+9*(0.34*a**3/8)/16*b0*(((a/x)**2-1)**3*b1+((a/x)**2-1)**2*(6-4*(a/x)**2))
+#E(x)=E0+9*v/16*b0*(((a/x)**2-1)**3*b1+((a/x)**2-1)**2*(6-4*(a/x)**2))
+
+E(x)=E0+9*(0.34*(2*a)**3/8)/16*b0*(((a/x)**2-1)**3*b1+((a/x)**2-1)**2*(6-4*(a/x)**2))
+
+#E1(x)=E0+b0/b1*x**3*((a**3/x**3)**b1/(b1-1)+1)-a**3*b0/(b1-1)
+#E1(x)=E0+9*b0*a**3/16*((a**3/x**3)**2**(1/3)-1)**3*b1-((a**3/x**3)**2**(1/3)-1)**2*(6-4*(a**3/x**3)**2**(1/3))
+
+
+#fit f1(x) 'si.txt' u ($1):($3/216) via a1,b1,c1
+#fit f2(x) 'si.txt' u ($1):($3/216) via a2,b2,c2,d2,e2,f2
+fit E(x) 'alaty.dat' u ($1):($2) via E0,a,b0,b1
+
+plot 'alaty.dat' u ($1):($2) title 'Total Energy' w p, E(x) title 'Fit' ls 1
+

@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{Topic 10}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Semiconductors}
+\textbf{Band model}: From our previous discussions, we observed the prescence of forbidden energies arising from the mathematical construction of garanteeing the good behaviour of the electron wavefunction in a periodic potential. A semiconductor is a crystalline substance which at zero temperature has a completely filled band (the valence band) and a completely empty band (the conduction band) separated by a forbidden energy zone. A non-zero temperatures, some electrons are thermally excited into the conduction band, leaving behind vacant states, which are known as holes. Looking at Figure 9.2, we can observe the behaviour of the energy bands as a function of interatomic spacing. At infinity, we have the individual atom states and as we approach the equilibrium position of the substance, we begin to lose the character of the s and p states has the band broaden and then overlap. At the equilibrium position, the bands do not overlap. $\delta \epsilon $ is function of pressure.
+\newline
+\textbf{Chemical bond model}: In the bond picture, the electrons in the valence band form the tetrahedral covalent bonds between atoms. Thermal excitation corresponds to an electron being removed from the covalent bond and becoming a free charge carrier in the the conduction band. With the application of an electric field to a thermally excited semiconductor lattice, the motion of holes in one direction and free electrons in the opposite gives rise to a current flow.
+\newline
+\section*{Intrinsic Semiconductors and Impurity Semiconductors}
+\textbf{Density of states for an intrinsic semiconductor}: In an intrinsic semiconductor (holes are created solely by thermal excitation), the number of electrons and the number of holes must be the same. The statistical behaviour of holes and electrons are described by the fermi-dirac distribution. The density of states, having a similar form to the density of states of an electron in a infinitely deep potential well, describes the layout of energy of free electrons in the conduction band and holes in the valence band. Here mass is substituted for effective mass of the electron and the hole, respectively. The density of states in the forbidden region is zero.  
+\newline
+\textbf{Distribution function, Fermi level, occupancy for an intrinsic semiconductor}: In order to guarantee that the number of free electron and the number of holes are the same, the Fermi energy must lie in middle of the of the band gap (Mathematically, this can be shown by integrating the density of states multiplied by the fermi-dirac distribution function over all possible energies with the effective masses of holes and electron being equal). If the the effective masses are not equal, the fermi level will be shifted up towards the conduction band or down towards the valence band.
+\newline
+\textbf{N-type impurity semiconductor}: The addition of group V atoms effectively donates an extra negative charge carrier. For example, of the 5 valence electrons of Arsenic to in a Germanium matrix, only 4 will form covalent bonds. The unbonded atom is weakly held by electrostatic forces and is easily freed by thermal agitation.
+\newline
+\textbf{P-type impurity semiconductor}: The addition of group III atoms effectively donates an extra postive charge carrier. For example, the 3 valence electrons of Indium to in a Germanium matrix will only form 3 covalent bonds. The lack of a 4 bond adds a hole the can move from the impurity site through the matrix.
+\newline
+\section*{Statistics of Holes and Electrons}
+\textbf{Boltzmann approximation}: We assume that the Fermi energy lies within the forbidden energy region in such away that there exists a few orders of kT separation from the conduction band. This simplifies the Fermi-Dirac distribution to a Maxwell distribution. The Boltzmann approximation is also valid for holes in the valence band.
+\newline
+\textbf{Calculation of $n_o$, $p_o$}: Under the Boltzmann approximation, we can evaluate the integral in 9.3-3 giving the total number of electrons per unit volume in the conduction band, giving the result 9.3-6. The total number of holes is found in the same manner except the integration now 1-distribution function 9.3-9, under the Boltzmann approximation for unoccupied states in the valence band. The result is shown in 9.3-15.
+\newline
+\textbf{$\mathbf{n_op_o=n_i^2T}$}: We observe that the product is only a function of the energy gap, the effective masses and the temperature and independent of the fermi level or impurity content. For a given semiconductor, the effective masses and the energy gap is fixed and the product becomes only a function of temperature.
+\newline
+\textbf{$\mathbf{np}$ product for an impurity semiconductor}: Since the product is independent of impurity content, it is the same for a doped conductor as it is for the instrinsic semiconductor as can be seen in 9.3-17.
+\newline
+\textbf{Intrinsic Fermi level}: By equating the intrinsic number of holes to the instrinsic number of electron we can solve to the intrinsic Fermi level as shown in 9.3-22. Since the ln of 1 is zero, for intrinsic semiconductors, the fermi level is average the conductance and valence energy.
+\newline
+\section*{Ionization Energy of Impurity Centers}
+\textbf{Calculation of ionization energy using the Bohr model}: We model the electron of an impurity as being loosely bound, which is approximated by an electron being subjected to a uniform polarizable material experiencing the dielectric constant of the macroscopic crystal. The situation is anologous to a hydrogen atom in the same material. Although it would be more rigourous to work out the ionization energy using the correct quantum description of the hydrogen atom, we know that Bohr theory predicts the correct energy levels and nearly the same radii. Substituting in the effective mass of the electron and dielectric constant of the semiconductor, we find that the radius of the first orbit will generally be much larger than the interatomic distance so our picture of a uniform continuous medium is justified. Using these properties and expression 9.4-4 we can approximate the ionization energies of different impurities in different semiconductors. Some results are shown in Table 9.1.
+\newline
+\textbf{Energy band diagram}: From the iononization energy results, the donor electrons orginate from a small band just below the conduction band, the donor levels. Acceptor holes come from electrons that occupy the top part of the valence band being excited into a state just above the the valence band, the acceptor levels.
+\newline
+\section*{Statistics of Impurity Semiconductor}From spin, each donor level has two quantum states. When one of these states is occupied, the other cannot be, because of the valency requirement (what exactly is this?). This changes the statistical arrangement of the system. Using the lagrangean multiplier methods once we have the determined the total number of ways of realizing a distribution, we arrive at a fermi-dirac distribution modified by factor of 1/2 in the exponential term of the denominator and the number of donor atoms being half the number of spin states described by 9.5-4. Here $n_d$ represents the concentration of unionized donors, which is the number of electrons per unit volume for a given donor level. Under the Boltzmann approximation, this expression simplifies to 9.5-8. We see that at room temperature the donors are almost completely ionized. A low temperatures, for complete ionization, $n_d$ must still approach zero represented by the criterion 9.5-10. \\
+Through a similar approach we find the distribution of acceptor impurity atoms, 9.5-5, and the complete ionization criterion, 9.5-11.\\
+By realizing that the overall substance must be electrically neutral, we can arrive an expression for the fermi energy the doped substance, 9.5-19. For n-type semiconductors, the fermi level is higher that the intrinsic fermi level. For n-type semiconductors, the opposite is true. Substituting the expression for fermi energy into the expression for the number of electrons per unit volume in the conduction band, we have an expression in terms of intrinsic charge concentration, donor concentration and acceptor concentration 9.5-23. For n-type, this simplifies to 9.5-25. For p-type, this simplifies to 9.5-26.\\
+\section*{Case of Incomplete Ionization of Impurity Levels} At zero temperature, in an n-type, the conduction band must be empty and the donor levels must be complete. In such a case the Boltzmann approximation cannot be used for electrons in the donor levels, but can still be used for electrons in the conduction band, since kT is quite small. \\
+Looking at the case of a pure n-type, setting the appropriate terms to zero in the electrical neutrality condition, we arrive at an expression for the fermi energy 9.6-9. Figure 9.12 displays the behaviour of the fermi energy as function of temperature for different concentrations of n and p type semiconductors. We see that the fermi energy first decreases then slowly increases with temperature, approaching the intrinsice fermi level at higher temperatures.
+\section*{Conductivity} Beginning with an expression for the current density of the holes and electrons and subsituting in the appropriate terms, we can rearrange for a expression for electrical conductivity 9.7-6. Noting that n, p and instantaneous values, we assume an equilibrium concentration. For an intrinsic semiconductor, we that a semilog plot of conductivity versus inverse temperature, gives a line with a slope of $\Delta \epsilon/2k$.\\
+For a n-type semiconductor at low temperature, most of carriers are from the donor atoms. As temperature is increased, free charge concentration increases thereby increasing the conductivity. When the number of free charge carriers sufficiently exceeds the donor and acceptor concentrations, the semiconductor behaves intrinisically.\\
+At low temperatures, there is not enough thermal energy to ionize the impurity atoms, and free electrons electrons and holes get stuck in the donor and acceptor levels. In high concentrations of donor and acceptor atoms, the wavefunctions of neighbouring donor and acceptor atoms begin to overlap and the donor/acceptor energy bands begin to broaden. Since this band will remain incomplete, a small conductivity may be observed.\\  
+\end{document}
+

@@ -1,0 +1,137 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip,mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336: Research Paper}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newtheorem{mydef}{Thereom}
+\numberwithin{equation}{section}
+\linespread{1.0}
+
+\begin{document}
+\begin{tabular}{ l l }
+  Nomenclature\\
+  $a$ & Lattice constant \\
+  $c_v$ & Specific heat at constant volume, $J/K$ (either per particle of per mode\\
+  $C_p$ & Volumetric specific heat at constant pressure, $J/m^3-K$\\
+  $C_v$ & Specific heat at constant volume, $J/kg-K$\\
+  $\textbf{e}$ & Normal mode polarization vector\\
+  $E$ & energy (kinetic and potential)\\
+  $f$ & phonon distribution function\\
+  $\textbf{F}$ & Force vector (tensor)\\
+  $\textbf{G}$ & Reciprocal space lattice vector\\
+  $\mathscr{H}, H$ & Hamiltonian \\
+  $\hbar$ & Planck's modified constant, 1.0546E-34 J-s\\
+  $k_B$ & Boltzmann's constant, 1.3806E-23 J/K\\
+  $k$ & Thermal conductivity\\
+  $K$ & Spring constant\\
+  $KE$ & Kinetic energy\\
+  $\mathscr{L}$ & Lagrangian \\
+  $m$ & Mass, constant\\
+  $n$ & Electron density\\
+  $N$ & Number of atoms\\
+  $p$ & Probability distribution function, constant\\
+  $\textbf{p}$ & Momentum vector\\
+  $P$ & Pressure, function\\
+  $\textbf{q},q$ & Heat flux vector, heat flux, charge\\
+  $\vec{r},\textbf{r},r$ & Particle position, inter-particle separation\\
+  $S$ & Normal mode coordinate\\
+  $t$ & Time\\
+  $T$ & Temperature\\
+  $\textbf{u},u$ & Particle displacement from equilibrium\\
+  $\textbf{v},v$ & Particle or phonon velocity\\
+  $V$ & Potential\\
+  $\psi$ & Kohn-Sham orbitals\\
+  $\epsilon$ & Kohn-Sham energy levels\\
+\end{tabular}
+\section*{Introduction to Density Functional Theory}
+
+\begin{mydef}The ground-state energy from Schrodinger's equation is a unique function of the electron density.
+\end{mydef}
+The electron density can be defined in terms of the individual electron wavefunctions:
+\begin{align*}
+	n(\vec{r})&=2\Sigma_i\psi_i^*(\vec{r})\psi_i(\vec{r})
+\end{align*}
+
+\begin{mydef}The electron density that minimizes the energy of the overall functional is the true electron density corresponding to the full solution of the Schrodinger equation.
+\end{mydef}
+
+The energy functional is defined as:
+\begin{align*}
+	E[\psi]=E_{known}[\psi]+E_{XC}[\psi]
+\end{align*}
+The Kohn-Sham equations have the form:
+\begin{align*}
+	[\frac{\hbar^2}{2m}\nabla^2+V(\vec{r})+V_H(\vec{r})+V_{XC}]\psi_i(\vec{r})=\epsilon_i\psi_i(\vec{r})
+\end{align*}
+$V(\vec{r})$ represents the interaction between the electron and the collection of nuclei:
+\begin{align*}
+	V(\vec{r})=V(\vec{r+a})
+\end{align*}
+$V_H(\vec{r})$, known as the Hartree protential, represents the Coulomb repulsion between the electron and the total electron density:
+\begin{align*}
+	V_H(\vec{r})=e^2\int\frac{n(\vec{r'})}{|\vec{r}-\vec{r'}|}d^3\vec{r'}
+\end{align*}
+Since the Hartree potential includes the electron's interaction with itself, the final term, the exchange-correlation potential, corrects this unphysical behaviour (More accurately, this potential describes the strange quantum mechanical behaviour of indistinguishable particles. The exchange part refers to the energy change from a change in spatial coordinates, the correlation term refers to the fact the electrons are really electron densities):
+\begin{align*}
+	V_{XC}(\vec{r})=\frac{\delta E_{XC}(\vec{r})}{\delta n(\vec{r})}
+\end{align*}
+Presently, there does not exist an explicit form for $E_{XC}$ so current implementations of DFT rely upon approximative forms of this term. The simplest approximation, called the local density approximation (LDA), describes the exchange-correlation potential to be that of the exchange-correlation potential of a uniform electron gas at the electron density observed at that position:
+\begin{align*}
+	V_{XC}(\vec{r})=V_{XC}^{electron gas}[n(\vec{r})]
+\end{align*}
+Once a representation of the exchange-correlation term has been chosen, an iterative approach to describing a self-consistent system is undertaken. A trial electron density is chosen to first solve the Kohn-Sham equations to find the single particle wave functions $\psi_i(\vec{r})$. A new electron density is then recalculated using these wave functions and compared to the initial electron density. This new electron density is then used in the Kohn-Sham equations and the procedure is repeated until convergence has been reached.
+
+\section*{Introduction to Density Functional Perturbation Theory}
+First note, the Hellmann-Feynman theorem:
+\begin{align*}
+	H_{\lambda}\Psi_{\lambda}&=E_{\lambda}\Psi_{\lambda}\\
+        \frac{\partial E_{\lambda}}{\partial \lambda}&=\langle \Psi_{\lambda}|\frac{\partial H_{\lambda}}{\partial \lambda}|\Psi_{\lambda}\rangle
+\end{align*}
+Like the application of perturbation theory to the Schroedinger Equation, the concept extends to the Kohn-Sham equations:
+\begin{align*}
+	(H_{SCF}-\epsilon_n)\mid\Delta\psi_n\rangle&=-(\Delta V_{SCF}-\Delta \epsilon_n)\mid\Delta\psi_n\rangle
+\end{align*}
+Equivalently written:
+\begin{align*}
+	(H_{SCF}-\epsilon_n)\mid\frac{\partial \psi_n}{\partial \lambda}\rangle&=-(\frac{\partial V_{SCF}}{\partial \lambda}-\epsilon_n^{(1)})\mid\psi_n\rangle        
+\end{align*}
+Assuming the perturbation is reasonably small, the energy can be represented as a power series:
+\begin{align*}
+	H_{SCF}=H^{(0)}+\lambda H^{(1)}+\lambda^2 H^{(2)}+\lambda^3 H^{(3)}\\
+        E=E^{(0)}+\lambda E^{(1)}+\lambda^2 E^{(2)}+\lambda^3 E^{(3)}
+\end{align*}
+The first and second derivatives (equivalently, the first and second order corrections to the energy):
+\begin{align*}
+E^{(1)}&=\frac{\partial E}{\partial \lambda_i}=\int \frac{\partial V_{\lambda}}{\partial \lambda_i}n_{\lambda}(\mathbf{r})d\mathbf{r}\\
+E^{(2)}&=\frac{\partial^2 E}{\partial \lambda_i\partial \lambda_j}=\int \frac{\partial V^2_{\lambda}(\mathbf{r})}{\partial \lambda_i\partial \lambda_j}n_{\lambda}(\mathbf{r})dr+\int\frac{\partial V_{\lambda}(\mathbf{r})}{\partial \lambda_j}\frac{\partial n_{\lambda}(\mathbf{r})}{\partial \lambda_i}d\mathbf{r}
+\end{align*}
+The third order derivatives [reference: Gonze and Vigneron].:
+\begin{align*}
+E^{(3)}&=\frac{\partial^3 E}{\partial \lambda_i\partial \lambda_j\partial \lambda_k}&=6 \Sigma_v\langle\psi_v^{(1)}|H^{(1)}_{SCF}-\epsilon_v^{(1)}|\psi_v^{(1)}\rangle +\int \frac{\delta^3E_{XC}[n^{(0)}]}{\delta n(\mathbf{r}) \delta n(\mathbf{r'}) \delta n(\mathbf{r''})}n^{(1)}(\mathbf{r}n^{(1)}\mathbf{r'} n^{(1)}\mathbf{r''} d\mathbf{r}d\mathbf{r'}d\mathbf{r''}
+\end{align*}
+The ability to calculate the above expression is the crux of the elegance of DFPT, since it is these anharmonic corrections that correspond to the decay of phonon modes into vibrations of lower of frequency (and thereby, the lifetime).
+For $x=r-r_0$, the Taylor expansion of the atom's energy about the minimum at $r_0$ is:
+\begin{align*}
+	E=E_0+\frac{1}{2}\Sigma_{i=1}^{3N}\Sigma_{j=1}^{3N}\frac{\partial^2E}{\partial x_i\partial x_j}|_{x=0}x_ix_j+\frac{1}{3!}\Sigma_{i=1}^{3N}\Sigma_{j=1}^{3N}\Sigma_{k=1}^{3N}\frac{\partial^3E}{\partial x_i\partial x_j\partial x_k}|_{x=0}x_ix_jx_k+...
+\end{align*}
+Since the zero-point energy of different structures varies negligibly, the determination of the ground state structure is equivalent to the mathematical problem of ﬁnding the global minimum of the PES. The ground state electronic energy:
+\begin{align*}
+	E_{el}=\Sigma_\alpha \epsilon_\alpha +\left(E_I[n]-\int\frac{\delta E_I[n]}{\delta n(\vec{r})}n(\vec{r})d\vec{r}\right)
+\end{align*}
+
+In the many body case, $H^{i}$, depends on $n^j$ for $j\leq i$. 
+\begin{align*}
+	H^i=V^i+\left(\frac{\delta E_{I}[n^0+\Sigma\lambda^jn^j]}{\delta n(\vec{r})}\right)^i
+\end{align*}
+The phonon linewidth:
+\begin{align*}
+	\Gamma {\kappa \choose \nu}= \frac{1}{2\tau {\kappa \choose \nu}}
+\end{align*}
+\end{document}
+

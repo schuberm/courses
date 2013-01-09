@@ -1,0 +1,78 @@
+#!/bin/sh
+############################################################################# 
+LISTECUT='20 30 40 50 60 70 80 90 100 110 120 130 140' 
+
+LISTKGRID='1 2 4 6 8 10 12'
+
+LISTALAT='6.60 6.61 6.62 6.63 6.64 6.65 6.66 6.67 6.68 6.69 6.70 6.71 6.72 6.73 6.74 6.75 6.76 6.77 6.78 6.79 6.80 6.81 6.82 6.83 6.84 6.85 6.86 6.87 6.88 6.89 6.90'
+
+#PSEUDO_DIR="/home/sam/Documents/espresso-4.3.2/pseudo/"
+#SCRATCH="/home/sam/Documents/espresso-4.3.2/diac/scratch" 
+#OUTPUT="/home/sam/Documents/espresso-4.3.2/diac" 
+#EXEPATH="/home/sam/Documents/espresso-4.3.2/bin"
+
+PSEUDO_DIR="/home/mullspace/Documents/espresso-4.3.2/pseudo/"
+SCRATCH="/media/2B7B180438B2F39D_/Scratch/" 
+OUTPUT="/home/mullspace/Dropbox/UofT/MSE1022/A3b/diamond/diac" 
+EXEPATH="/home/mullspace/Documents/espresso-4.3.2/bin"
+
+
+if [ ! -d $SCRATCH ]; then 
+mkdir $SCRATCH 
+fi 
+
+if [ ! -d $PSEUDO_DIR ]; then 
+mkdir $PSEUDO_DIR 
+fi 
+
+if [ ! -d $OUTPUT ]; then 
+echo $MYDIR does not exist, please create it first 
+exit 
+ fi 
+   
+#for ecut in $LISTECUT 
+#  do
+#for kgrid in $LISTKGRID 
+#  do 
+for alat in $LISTALAT 
+  do 
+#rm -f $OUTPUT/diac.scf.$kgrid.in
+#cat > $OUTPUT/diac.scf.$kgrid.in << EOF
+#rm -f $OUTPUT/diac.scf.$ecut.in
+#cat > $OUTPUT/diac.scf.$ecut.in << EOF
+rm -f $OUTPUT/diac.scf.$alat.in
+cat > $OUTPUT/diac.scf.$alat.in << EOF
+
+
+
+  &control
+    prefix='diamond',
+    calculation='scf',
+    outdir = '$SCRATCH' 
+    pseudo_dir = '$PSEUDO_DIR' 
+    tprnfor=.true.
+ /
+ &system    
+    ibrav=  2, 
+    !celldm(1) =6.74,
+    celldm(1) =$alat, 
+    nat=  2, ntyp= 1,
+    !ecutwfc = $ecut,
+    ecutwfc = 140,
+ /
+ &electrons
+ /
+ATOMIC_SPECIES
+C  12.0107  C.pz-rrkjus.UPF
+ATOMIC_POSITIONS
+ C 0.00 0.00 0.05 
+ C 0.25 0.25 0.25 
+K_POINTS {automatic}
+8 8 8 0 0 0
+EOF
+
+#$EXEPATH/pw.x < $OUTPUT/diac.scf.$ecut.in >  $OUTPUT/diac.scf.$ecut.out
+#$EXEPATH/pw.x < $OUTPUT/diac.scf.$kgrid.in >  $OUTPUT/diac.scf.$kgrid.out
+$EXEPATH/pw.x < $OUTPUT/diac.scf.$alat.in >  $OUTPUT/diac.scf.$alat.out
+done
+

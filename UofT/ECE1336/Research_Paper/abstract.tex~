@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336: Research Abstract}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+\linespread{2.0}
+\begin{document}
+
+
+\section*{\textit{Ab initio} thermal conductivity}
+
+The objective of the paper will be to outline an approach to determine the thermal conductivity of a given semiconductor material from \textit{ab initio} quantum chemistry calculations. Beginning with a review of the quantum many-body problem and density functional theory (as well as alternatives to DFT), an example calculation of the interatomic force constants of bulk silicon using QUANTUM ESPRESSO is presented. The relation between DFT determined interatomic force constants and phonon behaviour is discussed in terms of the relevant lattice dynamics. Finally, an examination of the validity of phonon Boltzmann Transport Equation for semiconductors, the relaxation time approximation and the derivation of the expression of thermal conductivity in terms of phonon properties is offered. Some interesting applications of the approach are mentioned.
+ 	
+\end{document}
+

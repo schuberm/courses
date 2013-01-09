@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 4}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Question 10}
+
+A. Assuming a linear boundary between vapor and solid, use the Clausius-Clapeyron equation
+\begin{align*}
+\frac{dP}{dT}&=\frac{s^V-s^S}{v^V-v^S}\\
+&=\frac{9.1562-(-1.2210)}{206.132-0.0010908}\\
+&=0.0503 [kPa/K]
+\end{align*}
+Find the y-intercept, b:
+\begin{align*}
+b&=0.6113-0.0503(273.16)\\
+&=-13.128648 [kPa]
+\end{align*}
+Plug in the temperature, $-6$ C:
+\begin{align*}
+P&=0.0503(273.15-6)-13.128648\\
+&=0.317645 [KPa]
+\end{align*}
+since $0.4375>0.317645$, the system is in the solid phase.
+
+B. Assuming a linear boundary between liquid and solid, use the Clausius-Clapeyron equation
+\begin{align*}
+\frac{dP}{dT}&=\frac{s^L-s^S}{v^L-v^S}\\
+&=\frac{0-(-1.2210)}{0.001000-0.0010908}\\
+&=-13447.137 [kPa/K]
+\end{align*}
+Find the y-intercept, b:
+\begin{align*}
+b&=0.6113+13447.137(273.16)\\
+&=3.67E6 [kPa]
+\end{align*}
+Plug in the temperature, $-6$ C:
+\begin{align*}
+P&=-13447.137(273.15-6)+3.67E6\\
+&=77597.35 [KPa]
+\end{align*}
+An increase of 77597.03 KPa is needed.
+
+C. 
+\begin{align*}
+Pressure&=\frac{Force}{Area}\\
+77597350&=\frac{100*9.81}{0.250(width)}\\
+width&=0.00005 [m]
+\end{align*}
+In making such a calculation, we have assumed the linear dependence of saturation pressure on temperature, which in reality may not be the case.
+
+\section*{Question 11}
+
+A. Solve for T,P:
+\begin{align*}
+15.16-\frac{3063}{T}&=18.70-\frac{3754}{T}\\
+T&=195.198[K]\\
+P&=59535.9[Pa]
+\end{align*}
+
+B. Latent heat for solid to vapour:
+\begin{align*}
+q_{VS}=T(s^V-s^S)
+\end{align*}
+Using
+\begin{align*}
+\frac{dP}{dT}&=\frac{s^V-s^S}{v^V-v^S}
+\end{align*}
+We write
+\begin{align*}
+q_{VS}=(v^V-v^S)T\frac{dP}{dT}=T(s^V-s^S)
+\end{align*}
+where
+\begin{align*}
+\frac{dP}{dT}=\frac{3754P_re^{18.7}e^{-3754/T}}{T^2}
+\end{align*}
+Noting $v^V>>v^L>>v^S$ and $v^V=\frac{RT}{P}$
+\begin{align*}
+q_{VS}&=v^V\frac{3754P_re^{18.7}e^{-3754/T}}{T}\\
+&=\frac{R}{P}3754P_re^{18.7}e^{-3754/T}\\
+&=31212.5 [J/mol]
+\end{align*}
+Latent heat for liquid to vapour:
+\begin{align*}
+q_{VL}&=v^V\frac{3063P_re^{15.16}e^{-3063/T}}{T}\\
+&=\frac{R}{P}3063P_re^{15.16}e^{-3063/T}\\
+&=25467.1 [J/mol]
+\end{align*}
+C. Latent heat for solid to liquid:
+\begin{align*}
+q_{VS}&=T(s^V-s^S)\\
+q_{VL}&=T(s^V-s^L)\\
+q_{LS}&=q_{VS}-q_{VL}=T(s^L-s^S)\\
+&=31212.5-25467.1=5746.4[J/mol]
+\end{align*}
+\newpage
+\section*{Question 13}
+A. The contraints
+\begin{align*}
+\Delta (V_c+V_R)&=0\\
+\Delta (N_{ic})&=0\\
+\Delta (U_c+U_R)&=0
+\end{align*}
+Assume that the solvent's volume does not change (incompressible) as it changes from a pure liquid to a weak solution, we have 
+\begin{align*}
+\Delta (V_c)&=V_B^i-V_B^f+V_A^i-V_A^f\\
+&=V_A^i=V_A^i(T,P)
+\end{align*}
+%The Gibbs function of the weak solution
+%\begin{align*}
+%G(T,P,N_1,N_2)=N_1\mu_1^0(T,P)+N_2k_bT\ln\left(\frac{N_2f(T,P)}{N_1}\right)
+%\end{align*}
+B. Apply the second postulate $\Delta S_c + \Delta S_R \geq 0$ and relying upon the assumption that the change in entropy is due solely to the dissolution of A into B, we write
+\begin{align*}
+\Delta S_c&=S_B^i-S_B^f+S_A^i-S_A^f\\
+&=S_A^i-S_A^f=N_2R\frac{\ln U^{3/2}V_A^i(T,P)}{N^{5/2}_2}
+\end{align*}
+
+\end{document}

@@ -1,0 +1,6 @@
+ &inputpp
+    prefix  = 'silicon'
+    outdir='./out'
+    filband = 'bands.dat'
+ /
+

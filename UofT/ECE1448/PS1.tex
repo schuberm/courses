@@ -1,0 +1,124 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{ECE1448: Problem Set 1}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+To determine the possible energies, $W$, of the system, we must first solve the 1D Schrodinger equation for a particle in a box:
+\begin{align*}
+	-\frac{\hbar^2}{2m}\frac{d^2\phi}{dx^2} &= W\phi
+\end{align*}
+Assuming a solution of the form $\phi=Ae^{ikx}+Be^{-ikx}$, where $k=\frac{-2mW}{\hbar^2}$, it is easily shown that in order to avoid trivial solutions, k must be resticted:
+\begin{align*}
+	2ak&=n\pi
+\\	W_{n}&=-\frac{n^2\pi^2\hbar^2}{8ma^2}
+\end{align*}
+The eigenfunctions, $\phi_n(x)$, through normalization and the application of the relevant boundary conditions, are :
+\begin{center}
+$$
+\phi_n(x) =\sqrt{\frac{1}{a}}
+\begin{cases}
+sin \frac{n\pi x}{2a}, & \text{if }n\text{ is even} \\
+cos \frac{n\pi x}{2a}, & \text{if }n\text{ is odd}
+\end{cases}
+$$
+\end{center}
+Using these eigenfunctions, we can now calculate the likelilood of measuring the corresponding energies through determining the expansion coefficients, $A_n$. This is done representing the known wavefunctions $\psi_{i}(x)$ and $\psi_{ii}(x)$ in terms of the eigenfunctions.
+\begin{align*}
+	\psi_{i}(x)&=\Sigma A_{n_i} \phi_{n_i}(x)
+\\	\psi_{ii}(x)&=\Sigma A_{n_{ii}} \phi_{n_{ii}}(x)
+\end{align*}
+Where
+\begin{center}
+$$
+\psi_{i}(x) =
+\begin{cases}
+\frac{1}{\sqrt{a}}, & \text{inside the segment} \\
+0, & \text{outside the segment}
+\end{cases}
+\psi_{ii}(x) =
+\begin{cases}
+\frac{e^{\frac{ix\pi}{4a}}}{\sqrt{a}}, & \text{inside the segment} \\
+0, & \text{outside the segment}
+\end{cases}
+$$
+\end{center}
+Rearranging for $A_n$:
+\begin{align*}
+	A_n&=\int \phi_n^*(x)\psi(x)dx
+\end{align*}
+For $\psi_{i}(x)$ where $n$ is even, we can write:
+\begin{align*}
+	A_{n_e}&=\int_{\frac{-a}{2}}^{\frac{a}{2}} \frac{sin \frac{n \pi x}{2a}}{\sqrt{a}}\frac{1}{\sqrt{a}} dx
+\\   &=\frac{1}{\pi}cos\frac{n \pi x}{2a}|_{\frac{-a}{2}}^{\frac{a}{2}} 
+\end{align*}
+Since cos is an even function, $A_{n_e}=0$ for all even values of $n$. We are now only concerned with $n$ being odd:
+\begin{align*}
+	A_{n_o}&=\int_{\frac{-a}{2}}^{\frac{a}{2}} \frac{cos\frac{n \pi x}{2a}}{\sqrt{a}}\frac{1}{\sqrt{a}} dx
+\\   &=\frac{2}{n\pi}sin\frac{n \pi x}{2a}|_{\frac{-a}{2}}^{\frac{a}{2}} 
+\end{align*}
+Substituting $n=1,3,5$ for the three lowest possible cases in the appropriate equations:
+\begin{align*}
+	A_{1i}&=\frac{2\sqrt{2}}{ \pi}
+\\	A_{3i}&=\frac{2\sqrt{2}}{3 \pi}
+\\      A_{5i}&=-\frac{2\sqrt{2}}{5 \pi}
+\end{align*}
+Following the same procedure for $\psi_{ii}(x)$, where $n$ is odd:
+\begin{align*}
+	A_{n_o}&=\frac{1}{a}\int_{\frac{-a}{2}}^{\frac{a}{2}} e^{\frac{ix\pi}{4a}}cos\frac{n \pi x}{2a}dx
+\\   &=\frac{1}{2a}\int_{\frac{-a}{2}}^{\frac{a}{2}} e^{\frac{ix\pi}{4a}}(e^{\frac{in\pi x}{2a}}+e^{\frac{-in\pi x}{2a}})dx
+\end{align*}
+For simplicity, let $C=\frac{2n+1}{4a}\pi$ and $D=\frac{-2n+1}{4a}\pi$, which gives:
+\begin{align*}
+	A_{n_o}&=\frac{1}{2a}(\frac{1}{iC}e^{iCx}+\frac{1}{iD}e^{iDx}|_{\frac{-a}{2}}^{\frac{a}{2}}) 
+\\             &=\frac{1}{2a}(\frac{1}{iC}e^{iC\frac{a}{2}}-\frac{1}{iC}e^{iC\frac{-a}{2}}+\frac{1}{iD}e^{iD\frac{a}{2}}-\frac{1}{iD}e^{iD\frac{-a}{2}})
+\\   &=\frac{1}{2a}(\frac{2}{C}sin\frac{Ca}{2}+\frac{2}{D}sin\frac{Da}{2})
+\\   &=\frac{1}{2a}(\frac{2}{\frac{2n+1}{4a}\pi}sin\frac{\frac{2n+1}{4a}\pi a}{2}+\frac{2}{\frac{-2n+1}{4a}\pi}sin\frac{\frac{-2n+1}{4a}\pi a}{2})
+\end{align*}
+For where $n$ is even:
+\begin{align*}
+	A_{n_e}&=\frac{1}{a}\int_{\frac{-a}{2}}^{\frac{a}{2}} e^{\frac{ix\pi}{4a}}sin\frac{n \pi x}{2a}dx
+\\   &=\frac{1}{2ia}\int_{\frac{-a}{2}}^{\frac{a}{2}} e^{\frac{ix\pi}{4a}}(e^{\frac{in\pi x}{2a}}-e^{\frac{-in\pi x}{2a}})dx
+\end{align*}
+For simplicity, let $C=\frac{2n+1}{4a}\pi$ and $D=\frac{-2n+1}{4a}\pi$, which gives:
+\begin{align*}
+	A_{n_e}&=\frac{1}{2ia}(\frac{1}{iC}e^{iCx}-\frac{1}{iD}e^{iDx}|_{\frac{-a}{2}}^{\frac{a}{2}}) 
+\\             &=\frac{1}{2ia}(\frac{1}{iC}e^{iC\frac{a}{2}}-\frac{1}{iC}e^{iC\frac{-a}{2}}-(\frac{1}{iD}e^{iD\frac{a}{2}}-\frac{1}{iD}e^{iD\frac{-a}{2}}))
+\\   &=\frac{1}{2ia}(\frac{2}{C}sin\frac{Ca}{2}-\frac{2}{D}sin\frac{Da}{2})
+\\   &=\frac{1}{2ia}(\frac{2}{\frac{2n+1}{4a}\pi}sin\frac{\frac{2n+1}{4a}\pi a}{2}-\frac{2}{\frac{-2n+1}{4a}\pi}sin\frac{\frac{-2n+1}{4a}\pi a}{2})
+\end{align*}
+Substiting $n=1,2,3$ for the three lowest possible cases in the appropriate equations:
+\begin{align*}
+	A_{1ii}&=0.879
+\\	A_{2ii}&=0.156i
+\\      A_{3ii}&=0.305
+\end{align*}
+
+The corresponding energies and probabilities:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  $n$ & $Energy [eV]$ & $A_{ni}$ & $\mid A_{ni} \mid^2$ & $A_{nii}$& $\mid A_{nii}\mid^2$  \\
+  \hline
+  1 & -0.587  & 0.900 & 0.810  & 0.879  & 0.773      \\ \hline
+  2 & -2.347  & 0     & 0      & 0.156i &  0.0243    \\ \hline
+  3 & -5.281  & 0.300 & 0.090  & 0.305  &   0.093    \\ \hline
+  4 & -9.388  & 0     & 0      & Not required & N.R. \\ \hline
+  5 & -14.669 & -0.180 & 0.0324 & Not required & N.R. \\ \hline
+\end{tabular}
+\end{center}
+
+Remarks about $\psi$ versus $\mid \psi \mid^2$:
+\\
+With regards to Scrodinger's equation, $\psi$ can be understood as an abstraction of the physical information that completely describes the system's state (system is used for generality since we can have multiple particles). In reality, we cannot directly observe $\psi$, but rather such the probability of finding of the particle (described by $\psi$) in the system's volume. $\mid \psi \mid^2$ is a probability density, which integrated over the volume yields the probability of finding the particle within the volume. With the \textit {a priori} knowledge that the particle exists within the volume, this integral must be equal to unity(normalization). In the problem above, $\psi_{i}(x)\neq\psi_{ii}(x)$ but $\mid \psi_{i}(x)\mid^2= \mid \psi_{ii}(x)\mid^2$. This is congruent with the problem statement that the electron is known to reside in a central segment with uniform probability of location within the segment, indicating that there exists multiple wavefunctions that yield equivalent probability densities. In order to determine which wavefunction completely describes the system, other physical quantities besides the probability of location must be measured. From the problem, we have shown that the two cases yield different respective energy levels, which can be measured through experiment. However, because of the uncertainty principle, the measurements of conjugate variables, like position and momentum or time and energy, can never be simultaneously known with complete accuracy thereby making it difficult to ascertain the true wavefunction description of the system (particularly when the number of degrees of freedom is large).
+
+\end{document}
+

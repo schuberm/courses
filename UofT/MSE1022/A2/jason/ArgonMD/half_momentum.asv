@@ -1,0 +1,19 @@
+function PE=half_momentum()
+
+for i=1:N
+    for k=1:3
+        if quench=='true'
+            p_half(i,k) = p(i,k) + (F(i,k) - eta*p(i,k))*0.5*t_step;
+        else
+            p_half(i,k) = p(i,k) + (F(i,k) - 1
+
+
+
+% C Code
+% 			// find momenta at half time step
+% 			for (i=0; i<N; i++){
+% 				for (k=0; k<3; k++) {
+% 					if (quench == true) p_half[i][k] = p[i][k] + (F[i][k] - eta*p[i][k])*0.5*t_step;
+% 					else p_half[i][k] = p[i][k] + (F[i][k] - 1.*(eta_t+eps_p)*p[i][k])*t_step*0.5;
+% 				}
+% 			}

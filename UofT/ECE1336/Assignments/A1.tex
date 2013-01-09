@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,fullpage,parskip}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+
+\pagestyle{plain}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title{ECE1336 Semiconductor Physics: Assignment 1}
+\author{Samuel Huberman (ID 999157923)}
+\date{2011-09-16}
+\maketitle
+
+\section*{Problem 1}
+
+A face centered cubic structure contains 8 ``quarter-atoms'' (this is incorrect, it should be 8 ``eighth-atoms''  and 6 ``half-atoms'' (atoms in this specific case of Al). Using dimensional analysis, we determine the length of one side of the cube:
+\begin{align*}
+	l&=((8(\frac{1}{4})+6(\frac{1}{2}))\unit{N}\times\frac{1}{6.02214179E23}\unit{\frac{mol}{N}}\times 107.87\unit{\frac{g}{mol}}\times \frac{1}{(10.5\times 100^3)}\unit{\frac{m^3}{g}})^\frac{1}{3}
+\\	 &=4.40193E-10\unit{m}
+\end{align*}
+
+The nearest neighbors are from a corner to the centered face atom, a distance of:
+\begin{align*}
+	d &= 0.5\sqrt(2l^2)
+\\	 &= 3.11264E-10 \unit{m}
+\end{align*}
+\section*{Problem 2}
+Please see the attached drawings.
+
+\section*{Problem 3}
+\begin{itemize}
+\item(a) All Bravais lattices are required to have an inversion center, as a result of the translational symmetry necessary to create a such a lattice.
+
+\item(b) In reality, not all crystal structures have an inversion center. Center substances such as quartz and ZnO lack inversion symmetry because of the triangonal, tetrahedral or pentagonal characteristic configuration of the unit cell.
+
+\item(c) Although the lack of an inversion center does not necessarily correspond to a piezoelectric quality, the presence of an inversion center eliminates the possiblity of piezoelectricity. Quartz, which accordingly lacks an inversion center, has been confirmed to exhibit strong piezoelectric behaviour. Given the nano-nature of semiconductor device frabrication, the piezoelectric effect can be used to monitor minute changes in thickness because any given material deformation will correspond to a unique voltage. Once properly calibrated, quartz can act as an in-situ thickness monitor. 
+\end{itemize}
+\end{document}

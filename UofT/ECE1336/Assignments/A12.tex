@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A12}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{itemize}
+\item i. Ohmic
+\item ii. Rectifying
+\item iii. Rectifying
+\item iv. Ohmic
+\end{itemize}  
+
+\section*{Problem 2}
+The divison between are rectifying and ohmic contact occurs when $\Phi_S=\Phi_M$, or equivalently, when the two materials' Fermi levels are identical. Here we assume $\Phi_S=\frac{E_g}{2}+\chi_S$. The difference between the intrinsic Fermi energy and the doped Fermi energy at the transition point:
+\begin{align*}
+\epsilon_f-\epsilon_{fi}&=\frac{E_g}{2}+\chi_S-\Phi_M\\
+			&=0.17[eV]
+\end{align*}
+Recalling the dependence of Fermi energy upon doping concentration:
+\begin{align*}
+\epsilon_f-\epsilon_{fi}=\pm kTln\frac{N_d-N_a}{n_i}
+\end{align*}
+Assuming $T=300K$ and $n_i=1.5E10[cm^{-3}]$, $N_d-N_a=1.076E13[cm^{-3}]$. This is the transition concentration.
+\begin{itemize}
+\item i. For n-type $N_d-N_a>1.076E13[cm^{-3}]$, the contact is ohmic. For n-type $N_d-N_a<1.076E13[cm^{-3}]$, the contact is rectifying.
+\item ii. For p-type $N_d-N_a<1.076E13[cm^{-3}]$, the contact is ohmic. For p-type $N_d-N_a>1.076E13[cm^{-3}]$, the contact is rectifying.
+\end{itemize}
+\section*{Problem 3}
+\begin{itemize}
+\item i. Diodes
+\item ii. Field-effect transistors 
+\end{itemize}
+\end{document}

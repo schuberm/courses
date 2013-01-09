@@ -1,0 +1,28 @@
+# gnuplot script for generating stress-strain curve
+set term postscript enhanced
+set encoding iso_8859_1
+set output 'lj.eps'
+set xlabel 'r [Angstrom]'
+set ylabel 'Energy [eV] or Force [eV/\305]'
+set grid
+A=4*0.458*(2.569)**6
+B=4*0.458*(2.569)**12
+V(x)=-A/x**6+B/x**12
+F(x)=-A*6/x**7+B*12/x**13
+
+B(x)=a*exp(-b*x)+c/x**6
+a = 0.001; b = 1; c = 1;
+#
+set style line 1 lt 1 lw 2 pt 3 linecolor rgb "red"
+set style line 2 lt 1 lw 2 pt 3 linecolor rgb "green"
+set style line 3 lt 1 lw 1 pt 3 linecolor rgb "blue"
+#
+set xrange [0:6]
+set yrange [-2:8]
+ 
+#plot V(x) title 'Potential Energy' w l ls 1,F(x) title 'Force' w l ls 2
+
+fit B(x) 'ljfit.dat' u ($1):($2) via a,b,c
+
+plot 'ljfit.dat' u ($1):($2) w p
+#, B(x) ls 1

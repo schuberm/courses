@@ -1,0 +1,65 @@
+# Deformation and stress-strain curve for Au nanowire
+# Basic settings
+units metal
+atom_style atomic
+boundary m m p
+# Geometry
+lattice fcc 4.08 origin 0 0 0 orient z 1 1 0 orient x 0 0 -1 orient y -1 1 0
+region box block 0 10 0 5 0 40 units lattice side in
+create_box 1 box
+create_atoms 1 box
+region 1  prism 5.1 10.0 0 5 -1 1000 10 0 0
+region 2  prism -1.0 4.9 0 5 -1 1000 -10 0 0
+region 3  prism 14.9 20.0 0 5 -1 1000 -10 0 0
+region 4  prism -20 -4.5 0 5 -1 1000 10 0 0
+group del1 region 1
+group del2 region 2
+group del3 region 3
+group del4 region 4
+##### Trim corners
+delete_atoms group del1
+delete_atoms group del2
+delete_atoms group del3
+delete_atoms group del4
+# Specify inter-atomic potential
+pair_style eam
+pair_coeff * * Au_u3.eam 
+neighbor 1.5 bin
+neigh_modify every 1 delay 1
+# Thermal equilibrium at 300K
+velocity all create 300 20199349 dist gaussian
+velocity all zero linear
+velocity all zero angular
+thermo 200
+thermo_style custom step atoms temp pe lx ly lz pzz press
+thermo_modify lost warn norm yes flush yes
+timestep 0.005 #ps
+#dump 1 all cfg 20000 initialpos.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 1 all custom 20000 pos.dump id type x y z
+#fix 1 all npt temp 300.0 300.0 10.0 aniso NULL NULL NULL NULL 0.0 0.0 10.0 drag 1.0
+fix 1 all npt temp 300.0 300.0 10.0 z 0.0 0.0 10.0 drag 2.0
+run 20000
+# Tensile loading
+unfix 1
+#undump 1
+reset_timestep 0
+compute MyTemp all temp
+compute Mype all pe
+compute peratom all stress/atom
+# Computing time-averaged quantities - T & pe
+fix ThermoAve all ave/time 1 100 200 c_MyTemp c_Mype
+thermo 200
+thermo_style custom step atoms f_ThermoAve[1] f_ThermoAve[2] lz vol pzz
+thermo_modify lost warn norm yes flush yes
+fix 1 all nvt temp 300.0 300.0 10.0
+#
+#log 	log_1E8.lammps
+fix 2 all deform 200 z erate 0.0005 # strain rate = 0.0001/ps = 10^8/sec
+#fix 2 all deform 200 z erate 0.001 # strain rate = 0.001/ps = 10^9/sec
+#dump 2 all cfg 20000 pos.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 2 all cfg 2000 pos.1E8.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 2 all xyz 50000 Au_*.xyz # Visualize with MDL
+#dump_modify 2 element Au
+#run 500000
+run 150000
+

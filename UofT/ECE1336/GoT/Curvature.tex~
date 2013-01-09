@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{Curvature v Radius}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+For a plane curve expressed as $y=f(x)$, the curvature is given as: 
+\begin{align*}
+\kappa=\frac{|y''|}{(1+y'^2)^{3/2}}
+\end{align*}
+For any point on a curve, we can define a unique osculating circle, which passes through the point $P$ and a pair of points infinitesimally close to $P$. The curvature of this circle is the same has the curvature at point $P$. The radius of this circle becomes the radius of curvature:
+\begin{align*}
+\kappa=\frac{1}{R}
+\end{align*}
+In some applications, like the bending of a beam, the slope $y'$ is assumed to be much smaller than unity, giving:
+\begin{align*}
+\kappa=|y''|
+\end{align*}
+The moment relationship for the bending of a beam is:
+\begin{align*}
+M=\frac{EI}{R}
+\end{align*}
+Examining the geometry of the beam:
+\begin{align*}
+\frac{1}{R}=\frac{d\theta}{ds}
+\end{align*}
+For small angles:
+\begin{align*}
+\frac{dy}{dx}=\tan \theta= \theta
+\end{align*}
+Giving:
+\begin{align*}
+\frac{1}{R}=\frac{d}{dx}\frac{dy}{dx}
+\end{align*}
+\end{document}
+

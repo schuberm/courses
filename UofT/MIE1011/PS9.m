@@ -1,0 +1,47 @@
+Tr=298;
+Pr=709275;
+N1=5.47991e-6;
+N2=3.25473e-9;
+v1=1.8066e-5;
+v2=9.21366e-5;
+Ps1=3170;
+Ps2=6.52e5;
+gamma=0.063;
+Kh=2.43e9;
+
+R=-1e-20:-5e-5:-1e-1;
+
+%Re=(2*gamma)./(8.31.*Tr./v2.*log((N2-4*pi*R.^3./(3.*v2)).*Kh./(N1.*Pr)));\\
+
+%Rdel=3.3e-5;
+Rdel=6.61e-9;
+D=4*pi*gamma*(R.^2-2*R.^3/(3*Rdel));
+
+%loglog(R,Re,'b')
+%hold on
+loglog(R,D,'b')
+
+xlabel('R [m]','FontSize',12)
+ylabel('D-D_0 [m]','FontSize',12)
+
+set(gca, ...
+  'Box'         , 'on'     , ...
+  'TickDir'     , 'in'     , ...
+  'TickLength'  , [.02 .02] , ...
+  'XMinorTick'  , 'on'      , ...
+  'YMinorTick'  , 'on'      , ...
+  'YGrid'       , 'off'      , ...
+  'XColor'      , [.3 .3 .3], ...
+  'YColor'      , [.3 .3 .3], ...
+  'Color'       , 'w'       ,...
+  'LineWidth'   , 1         , ...
+  'units',       'inches', ...
+  'Position', [1 1 3.5 3.5]);
+
+set(gcf, 'PaperPositionMode', 'auto','Color','w');
+
+print -depsc2 plot3.eps
+
+f=@(R)(2*gamma)./(8.31.*Tr./v2.*log((N2-4*pi*R.^3./(3.*v2)).*Kh./(N1.*Pr))+Ps2-Pr)-R;
+
+fzero(f,1e-4)

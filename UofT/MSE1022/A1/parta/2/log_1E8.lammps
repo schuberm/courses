@@ -1,0 +1,7 @@
+fix 2 all deform 200 z erate 0.0001 # strain rate = 0.0001/ps = 10^8/sec
+#fix 2 all deform 200 z erate 0.001 # strain rate = 0.001/ps = 10^9/sec
+#dump 2 all cfg 20000 pos.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 2 all cfg 2000 pos.1E8.*.cfg id type xs ys zs # Visualize with AtomEye
+#dump 2 all xyz 50000 Au_*.xyz # Visualize with MDL
+dump_modify 2 element Au
+ERROR: Cound not find dump_modify ID (output.cpp:421)

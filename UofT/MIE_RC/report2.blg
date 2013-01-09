@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: report2.aux
+The style file: apsrev.bst
+Database file #1: new.bib.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Name 1 in "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" has a comma at the end for entry Broido1
+while executing---line 2283 of file apsrev.bst
+Too many commas in name 1 of "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" for entry Broido1
+while executing---line 2283 of file apsrev.bst
+Name 1 in "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" has a comma at the end for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Too many commas in name 1 of "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Name 1 in "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" has a comma at the end for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Too many commas in name 1 of "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Name 1 in "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" has a comma at the end for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Too many commas in name 1 of "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Name 1 in "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" has a comma at the end for entry Broido1
+while executing---line 2372 of file apsrev.bst
+Too many commas in name 1 of "D. A. Broido, M. Maloney, G. Birner, N. Mingo, and D. Stewart" for entry Broido1
+while executing---line 2372 of file apsrev.bst
+You've used 13 entries,
+            3411 wiz_defined-function locations,
+            1260 strings with 12500 characters,
+and the built_in function-call counts, 7752 in all, are:
+= -- 451
+> -- 217
+< -- 36
++ -- 164
+- -- 54
+* -- 1035
+:= -- 893
+add.period$ -- 13
+call.type$ -- 13
+change.case$ -- 54
+chr.to.int$ -- 13
+cite$ -- 13
+duplicate$ -- 718
+empty$ -- 678
+format.name$ -- 141
+if$ -- 1451
+int.to.chr$ -- 1
+int.to.str$ -- 14
+missing$ -- 113
+newline$ -- 54
+num.names$ -- 39
+pop$ -- 191
+preamble$ -- 1
+purify$ -- 52
+quote$ -- 0
+skip$ -- 277
+stack$ -- 0
+substring$ -- 237
+swap$ -- 545
+text.length$ -- 27
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 74
+warning$ -- 0
+while$ -- 33
+width$ -- 0
+write$ -- 150
+(There were 10 error messages)

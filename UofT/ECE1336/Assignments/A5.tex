@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A5}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+
+\section*{Problem 1}
+
+\begin{itemize}
+\item a. For Maxwell-Boltzmann, the particles are identifiable and do not obey the Pauli exclusion principle. For Fermi-Dirac, the particles are not identifiable and obey the Pauli exclusion principle. For Bose-Einstein, the particles are not identifiable and do not obey the Pauli exclusion principle.
+
+\item b. A gas molecule in equilibrium obeys the Maxwell-Boltzmann distribution. An electron in a free-electron gas obeys the Fermi-Dirac distribution. A photon obeys the Bose-Einstein distribution.
+
+\item c. With 4 objects and 2 boxes, there exists $2^4$ ways to arrange the particles among the boxes without regard for the resulting distribution. The probability of a giving arrangement is the number of independent ways of arriving at that arrangement divided by $2^4$. There are sixteen possible arrangements.
+\newline
+\begin{tabular}{|l|l|}
+\hline
+Configuration & Probability\\ \hline
+QS1:(A,B,C,D) QS2:(0) & $\frac{1}{2^4}$ \\ \hline
+QS1:(A,B,C) QS2:(D) & $\frac{4}{2^4}$ \\ \hline
+QS1:(A,B) QS2:(C,D) & $\frac{6}{2^4}$ \\ \hline
+QS1:(A) QS2:(B,C,D) & $\frac{4}{2^4}$ \\ \hline
+QS1:(0) QS2:(A,B,C,D) & $\frac{1}{2^4}$\\ \hline
+QS1:(D) QS2:(A,C,B) & $\frac{4}{2^4}$ \\ \hline
+QS1:(C,D) QS2:(A,B) & $\frac{6}{2^4}$ \\ \hline
+QS1:(B,C,D) QS2:(A) & $\frac{4}{2^4}$ \\ \hline
+QS1:(C) QS2:(A,B,D) & $\frac{4}{2^4}$ \\ \hline
+QS1:(C,B) QS2:(A,D) & $\frac{6}{2^4}$ \\ \hline
+QS1:(A,C,D) QS2:(B) & $\frac{4}{2^4}$ \\ \hline
+QS1:(B) QS2:(A,C,D) & $\frac{4}{2^4}$ \\ \hline
+QS1:(B,D) QS2:(A,C) & $\frac{6}{2^4}$ \\ \hline
+QS1:(A,B,D) QS2:(C) & $\frac{4}{2^4}$ \\ \hline
+QS1:(A,C) QS2:(B,D) & $\frac{6}{2^4}$ \\ \hline
+QS1:(A,D) QS2:(B,C) & $\frac{6}{2^4}$ \\ \hline
+\end{tabular}
+\end{itemize}
+\section*{Problem 2}
+The number of states, G, between 0 and 1 ev is given by:
+
+\begin{align*}
+	G &= \int_0^1 g(\epsilon)d\epsilon
+\\       &= \int_0^1 \frac {8\sqrt{2} \pi V}{h^3}m^{\frac{3}{2}}\sqrt{\epsilon}d\epsilon
+\\       &= \frac {8\sqrt{2} \pi V}{h^3}m^{3/2}\frac{2\epsilon ^{\frac{3}{2}}}{3}|_0^1
+\\       &=4.51190E21
+\end{align*}
+
+\section*{Problem 3}
+The probability of a state being filled with energy $\epsilon_f+\Delta\epsilon$:
+\begin{align*}
+	f(\epsilon_f+\Delta\epsilon) &= \frac{1}{1+e^{(\epsilon_f+\Delta\epsilon-\epsilon_f)/kT}}
+\\       &= \frac{1}{1+e^{(\Delta\epsilon)/kT}}
+\end{align*}
+The probability of a state being empty with energy $\epsilon_f-\Delta\epsilon$:
+\begin{align*}
+	1-f(\epsilon_f-\Delta\epsilon) &=1- \frac{1}{1+e^{(\epsilon_f-\Delta\epsilon-\epsilon_f)/kT}}
+\\       &= \frac{1+e^{(-\Delta\epsilon)/kT}-1}{1+e^{(-\Delta\epsilon)/kT}}
+\\       &= \frac{1}{1+e^{(\Delta\epsilon)/kT}}
+\end{align*}
+\end{document}
+

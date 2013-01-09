@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{Topic 5}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\textbf{Statistical Mechanics definition}:
+\newline
+\textbf{6D phase space}: The coordinate system used to describe a system in a probabilistic fashion. The coordinates are $(x,y,z,p_x,p_y,p_z)$
+\newline
+\textbf{Basic postulate}: We have a prior knowledge that the probability for a system to be in any given quantum state is the same for all quantum states of the system.
+\newline
+\section*{Distribution Function and Density of States}
+\textbf{Distribution function, $f(\epsilon)$}: The average number of particles of the system that occupy a single quantum state of energy $\epsilon$, depends upon the probabilities associated with the distribution of particles of the system among the available quantum states.
+\newline
+\textbf{Density of states, $g(\epsilon)d\epsilon$}: The number of quantum states of the system whose energy is in a range $d\epsilon$ about $\epsilon$, depends only upon how the quantum states are situated in energy.
+\newline
+\textbf{$N(\epsilon)d\epsilon$, Distribution of particle density with energy}: The number of particles of the system whose energy is in the range $d\epsilon$ about $\epsilon$.
+\newline
+\textbf{$<\alpha>$, given $ \alpha(\epsilon)$}: The average value of any quantity $\alpha$ determined by integrating over number of particles of the system whose energy is in the range $d\epsilon$ about $\epsilon$ (like finding the centroid of a geometry).
+\newline
+\textbf{$<\alpha>$, given  $\alpha(x,y,z,p_x,p_y,p_z)$}: The average value of any quantity $\alpha$ determined by integrating over the distribution funtion in phase space (like finding the centroid of a geometry).
+\newline
+\textbf{Free particle Schrodinger's equation}: Time-independent homegeneous wave equation. 
+\newline
+\textbf{Propagation vector, k; relationship between $k, k_x, k_y, k_z$ and $\epsilon$}: The sum of the square of the components is equal to a constant ($k^2$), which related to $\epsilon$ through equation 5.2-6: $k^2=2m\epsilon/\hbar^2$ 
+\newline
+\textbf{$\epsilon_{nxnynz}$}: Refers to the energy of the a specific component of the propagation vector. $n$ is an integer.
+\newline
+\textbf{Degeneracy of energy level $\epsilon$}: Different combinations of $n_x, n_y, n_z$ yield the same total energy.
+\newline
+\textbf{Volume of momentum space corresponding to a single quantum state}: The unit cell volume in momentum space when $p_i=hn_i/i_0$.
+\newline
+\textbf{Surface in momentum space, surfaces corresponding to constant energy}: A sphere determined by the equation 5.2-18, relating the sum of the squares of a given momentum for constant energy. 
+\newline
+\textbf{Density of states, $g(\epsilon)d\epsilon$}: Number of quantum states to be found in the shell volume of momemtum space.
+\newline
+\section*{Maxwell-Boltzmann Distribution}
+\textbf{Conditions}: The particles, acting like billard balls, are identifiable. We ignore the Pauli exclusion principle so any number of particles are permitted to occupy a given quantum state. We are dealing with an isolated system of $N$ distinguishable particles, with constant total energy $U$, which may be distributed among $n$ energy levels.
+\newline
+\textbf{Equilibrium state of the system}: The distribution of particles among levels that has a maximum probability of occurence because it can be acheived through a maximum number of statistically independent ways.
+\newline
+\textbf{$Q(N_1,N_2,...N_n)$}: The number of statistically independent ways of arriving at the distribution $(N_1,N_2,...N_n)$. There are N ways of choosing object numbered $\alpha$, N-1 ways of choosing $\beta$, etc...but the permutations of $\alpha, \beta, etc$ lead to equivalent distributions so Q is divided by the product of $N_i!$ . 
+\newline
+\textbf{$Q(N_1,N_2,...N_n)$ when degeneracy is included}: Since there $g_i^{N_i}$ ($g_i$ being the degeneracy and $N_i$ being the number of particles) ways of arranging particles among the states of the $i$th level, the number of statistically independent ways of arriving at the distribution must be adapted to include the degeneracy. This is done by including a factor of $\Pi g_i^{N_i}$
+\newline
+\textbf{Method of Lagrangean multipliers}: An approach to finding the maxima or minima of a function. Generally, we would take the total differential of the function of interest, set it to zero and solve the set of independent equations. When subjected to a constraint, the independent variables are no longer independent and this procedure fails.  We can, however introduce a constant such that we can arrive at a set of simultaneous equations. In this case, we want to maximize $Q$, under the restrictions that $N$ and $U$ are constant.
+\newline
+\textbf{Maxwell-Boltzmann distribution}: Through the Lagrangean multipliers method and using Stirling approximation, the form of the distribution was determined. $\beta$ is related to the negative inverse of Boltzmann's constant and temperature and $\alpha$ can be expressed in terms of the total number of particles.
+\newline
+\textbf{Connection between Q and entropy S}: At equilibrium, the state of the system is such that Q and S are maximized.
+\newline
+\section*{Maxwell-Boltzmann Statistics of an Ideal Gas}
+\textbf{Boltzmann distribution, $f(e);N(v)$ - for several temperatures}: Given the form for $\alpha$ and $\beta$, the distribution can be expressed as a function of kinetic energy or of the velocity of the gas particles. The distribution is unique for a given temperature.
+\newline
+\textbf{Equation of state for a Boltzmann gas}: Through an examination of the elastic collisions of gas particles with a wall using the Boltzmann distribution to express the velocity components, the expression for the momementum transfer in time can rearranged as the ideal gas law, also known as the equation of state.
+\newline
+\section*{Fermi-Dirac Statistics}
+\textbf{Conditions}: We impose indistinguishability and the Pauli exclusion principle.
+\newline 
+\textbf{Fermi-Dirac distribution}: Like the Maxwell-Boltzmann distribution, we arrive at the functional form of the F-D distribution through the method of Lagrangean multipliers. Unlike the M-B distribution where the particles are identifiable and the equivalent permutations yield the same distribution, it is the product of the possible number of permutations of particles among quantum states over all energy levels of the system that gives the number of independent ways of realizing a given distribution.
+\newline
+\textbf{$g(\epsilon)d\epsilon$ for a gas of independent particles, such as free electrons}: Number of $g_i$ (because of the inclusion of degeneracy) independent quantum states to be found in the shell volume of momemtum space. When the levels become arbitrarily close together, we can assume a continuous form similar to that of the M-B DOS.
+\newline
+\textbf{Temperature variation of the Fermi energy}: The Fermi energy's dependence upon temperature is determined by integrating the F-B distribution and the density of states over all possible energies. For a 2D independent particle gas, we can rearrange for an expression of $\epsilon_f(T)$.
+\newline
+\textbf{Fermi sphere}: A sphere determined by the equation 5.5-23, relating the sum of the squares of the components of momentum to the Fermi energy, signifying the degenerate states of the system.
+\newline
+\textbf{Fermi distribution for ($\epsilon-\epsilon_f)>>kT$}: We can simplify the the F-D distribution to a version of the M-B distribution where $\alpha=\epsilon_f/kT$.
+\newline
+\section*{Bose-Einstein Distribution}
+\textbf{Conditions}: Identical particles, but without Pauli exclusion principle so there are no restrictions upon the number of particles that may occupy any given quantum state.
+\newline
+\textbf{Bose-Einstein distribution}: Number of permutations of particles among the partitions $(N_i+g_i-1)$ in the ith energy level divided by the permutations of the partitions among themselves (identical) divided by the permuations of particles (identical) among themselves. The product of over all energy levels yields Q. Applying the Lagrangean multiplier method, yields the B-E distribution. At high temperatures, B-E becomes an M-B type. A low temperatures, $\alpha$ approaches zero, and the system condenses into the lowest energy state.
+\newline
+\end{document}
+

@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A6}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+
+\section*{Problem 1}
+
+\begin{itemize}
+\item a. Zero-point energy is the energy of the ground (lowest) state of a quantum system.
+
+\item b. (i) Zero-point energy is not applicable to classical systems. (ii) The energy of a 1D quantum harmonic oscillator is ($\omega_0$ is the natural frequency of the oscillator):
+\begin{align*}
+	\epsilon_n &= (n+\frac{1}{2})\hbar \omega_0
+\end{align*}
+where $n=0,1,2...$. For the zero-poin energy $n=0$. For the 3D case, this corresponds to:
+\begin{align*}
+	\epsilon_0 &= (\frac{3}{2})\hbar \omega_0
+\end{align*}
+\end{itemize}
+\section*{Problem 2}
+Debye theory predicts the total internal energy has:
+\begin{align*}
+	U &= \frac{9}{8}Nk\Theta+9NkT\frac{T}{\Theta}^3\int_0^\frac{\Theta}{T} \frac{x^3}{e^x-1} dx
+\end{align*}
+where $x=\frac{\hbar\omega}{kT}$. The first term corresponds to the zero-point energy, therefore we can write the zero-point energy per atom as
+\begin{align*}
+	\epsilon_n &= \frac{9}{8}\hbar \omega_0
+\\       &= \frac{9}{8}k\Theta
+\\       &= 0.0089 eV
+\end{align*}
+
+\section*{Problem 3}
+\begin{itemize}
+\item a. Specific heat refers to the amount of energy that a material can contain at a given temperature. Thermal conductivity refers to the ease with which thermal energy can be transmitted through a material.
+\item b. Water as a relatively high specific heat capacity ($C_p=4.181 kJ/kgK$), and can therefore extract a significant amount of thermal energy per given volume of water.
+\item c. The high strength of the bonds between carbon atoms indicates that the anharmonicity of the interatomic potential that is responsible for finite thermal conductivity does not manifest itself in a dominant manner. Therefore, the scattering of phonons is relatively low in contrast with other materials.
+\end{itemize}
+\end{document}
+

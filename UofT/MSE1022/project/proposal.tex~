@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip,mathrsfs,subfigure}
+\usepackage{fancyhdr}
+\usepackage{amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{epstopdf}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{MSE1022:Project Proposal}
+\rhead{999157923}
+
+\linespread{1.5}
+\begin{document}
+
+Understanding thermal energy transport in light emitting diodes (LEDs) and photovoltaics is necessary to improve device performance. With a higher understanding of the dynamics of energy transfer at the nano-scale, we can begin the engineer solutions with specific applications in mind. Elucidating these dynamics begins with examining the behaviour of energy carriers: electrons and phonons. For the sake of project feasibility, I will be studying the properties of phonons, the quantized lattice vibrations, and neglecting electrons. (It is indeed the interaction between these two types of carries that is responsible for the ubiquitous Joule heating, but to reliably model such physics requires the development of a  detailed and computationally intense approach [1]. As such, this is currently beyond my present ability)
+
+Thermal conductivity, which is often assumed to be a constant in the application of Fourier's Law, is, in reality, dependent upon temperature. This dependence can be accounted for by discretizing the domain using a conventional finite element method. However, the continuum picture unravels when the material of interest has a characteristic dimension that approaches the same order of magnitude as the mean free paths of the heat carriers. These heat carriers, which occur in any periodic solid regardless of its size, are referred to as phonons.
+
+Each phonon, corresponding to a normal mode of vibration of the lattice, is associated with three properties: the group velocity, the specific heat and the lifetime of its existence, defined as the average time before that phonon mode interacts with another. The latter of these properties, being the most difficult to quantify, is responsible for finite thermal conductivity. Determining the overall contribution of each phonon mode towards thermal conductivity relies upon the accurate prediction of these properties. In the past few years, computational approaches to this problem has gained credence. Of the existing methods, there are two that are remarkable for their simplicity.
+
+One approach is to use harmonic lattice dynamics, which relies upon the validity of truncating the terms beyond the second order in the energy expansion to determine the frequencies, group velocities and eigenvectors for the modes. The velocities from a molecular dynamics simulations are then projected onto the eigenvectors (normal mode decomposition, NMD). The variation of these normal mode coordinates allows one to infer how the phonon population changes with time (spectral energy density, SED), and thus estimate the phonon lifetimes [2].
+
+The other approach is to use density functional theory (DFT) to calculate the exact interatomic potential (and hence the required force constants), from which the phonon lifetimes can be extracted through Fermi’s golden rule, exemplified through the work of Broido et al [3] and later Esfarjani et al [4]. 
+
+The advantage of the first approach (here now referred to as NMDSED) is that it can easily be extended to the study of non-bulk materials. The scope of this project will be to use NMDSED to examine the effect of an interface upon phonon properties. I will use a simple system of Lennard-Jones Argon, where an interface is defined as being bounded by lattices of dissimilar masses (e.i.: to the left will have a unit mass and to the right will have three times the unit mass). Here, I will be using GULP [5] as the engine for the calculation of the frequencies and eigenvectors. By systematically dividing the computational domain into regions, LAMMPS will generate the required atomic velocities for the normal mode decomposition. By determining the lifetimes within these regions of the computational domain, I will, at the very least, be able to qualitatively describe the extent of the interface.
+
+\subsection*{References}
+\begin{spacing}{1.0}
+[1] E. Pop, ASME Conf. Proc. ENIC2008-53050, 129-132 (2008).\newline
+[2] J. A. Thomas, J. E. Turney, R. M. Iutzi, C. H. Amon and A. J. H. McGaughey, Phys. Rev. B. \textbf{81}, 081411 (2010).\newline
+[3] D. A. Broido, M. Malorny, G. Birner, Natalio Mingo, and D. A. Stewart, Appl. Phys. Lett. \textbf{91}, 231922 (2007).\newline
+[4] K. Esfarjani and H.T. Stokes, Phys. Rev. B. \textbf{77}, 144112 (2008).\newline
+[5] J.D. Gale, JCS Faraday Trans., \textbf{93}, 629 (1997).\newline
+\end{spacing}
+\end{document}
+

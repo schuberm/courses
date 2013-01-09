@@ -1,0 +1,295 @@
+
+
+*******************************************************************************
+Tue Feb 28 21:59:48 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:02:02 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:02:45 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:04:57 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:14:36 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:14:56 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 1e-05
+b               = 1
+c               = 1
+BREAK:          Undefined value during function evaluation
+
+
+
+*******************************************************************************
+Tue Feb 28 22:15:24 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 0.001
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.4876e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Tue Feb 28 22:15:55 2012
+
+
+FIT:    data read from 'ljfit.dat' u ($1):($2)
+        format = x:z
+	y range restricted to [0.00000 : 6.00000]
+        #datapoints = 620
+        residuals are weighted equally (unit weight)
+
+function used for fitting: B(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 5.34211e+60       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.31898e+10
+
+initial set of free parameter values
+
+a               = 0.001
+b               = 1
+c               = 1
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 1.27386e+57
+rel. change during last iteration : -3.50128e-14
+
+degrees of freedom    (FIT_NDF)                        : 617
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.43687e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.06461e+54
+
+BREAK:          Singular matrix in Invert_RtR
+

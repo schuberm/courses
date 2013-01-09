@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A10}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{itemize}
+\item a.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l |l |l|} 
+  \hline
+ Semiconductor & N_c &N_v \\
+  \hline
+  Si & 2.816E25 & 1.05161E25 \\ \hline
+  GaAs & 4.352E23 &8.345E24\\ \hline
+  Ge & 1.02E25 &5.647E25\\ \hline 
+\end{tabular}
+\end{center}
+\end{table}
+\item b. The effective density of states (in the conduction and valence band) of Ge and Si are on the same order of magnitude, while the effective density of states in the conduction band of GaAs is two orders of magnitude lower than Si and Ge and  the effective density of states in the valence band of GaAs is a order of magnitude lower than Si and Ge. 
+\item c. 
+i. $n_0=5.266E15$ and $p_0=1.966E15$\\ 
+ii.$n_0=4.245E21$ and $p_0=2.439E9$ \\
+Notice that the principle of mass action is obeyed.
+\end{itemize}
+
+\section*{Problem 2}
+From the electrical neutrality condition (neglecting the concentrations of unionized donors and acceptors):
+\begin{align*}
+p_0+n_0+N_d-N_a=0
+\end{align*}
+Subsituting in $p_0=n_i^2/n_0$ gives:
+\begin{align*}
+n_0^2-(N_d-N_a)n_0+n_i^2&=0
+\end{align*}
+We find that for n-type semiconductors $N_d-N_a>0$ so $n_0>p_0$ and the reverse being true for p-type semiconductors. The difference in carrier concentration from its instrinsic value is a physical response from the system to remain in electrical equilibrium.
+\section*{Problem 3} For an intrinsic semiconductor where the effective mass of the holes is greater than the effective mass of the electrons, the Fermi energy will be above the mid point of the energy gap. Recalling that a larger effective mass corresponds to a smaller curvature of the E-k parabola, correspondingly there exists a greater number of states for a given $\Delta E$. This greater number of states (imagine a greater number of particles in a box) in valence band pushes the Fermi energy upwards torwards the conduction band.  
+
+\end{document}
+

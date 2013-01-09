@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 8}
+\rhead{999157923}
+
+\begin{document}
+
+\section*{Chapter 2 Question 4}
+\subsection*{Part A}
+From the Van der Waals picture, if the system lies inside the vapour dome, a $P>P_s$ pushes the state from equilibrium (stable) to some other state (not stable, could be metastable) since the conditions
+\begin{align*}
+\frac{\partial P}{\partial v} = 0
+\frac{\partial ^2P}{\partial v^2} = 0
+\end{align*}
+are not necessarily true.
+
+\subsection*{Part B}
+From the energy and entropy postulates
+\begin{align*}
+0&\ge \Delta U^C-T^R\Delta S^C+P^R \Delta V^C-\mu^R \Delta N^C
+\end{align*}
+Expanding and noting conservation of molecules and $P^R=P^V$
+\begin{align*}
+0&\ge \Delta (U^L+U^V+U^{LV}+U^R)-T^R\Delta (S^L+S^V+S^{LV}+S^R)+P^R \Delta (V^L+V^V)\\
+&\ge \Delta(U^V+T^RS^V+P^RV^V)+\Delta(U^L+T^RS^L)+\Delta(U^{LV}+T^RS^{LV}) +P^R \Delta V^L\\
+&\ge \Delta(G^V+F^L+F^{LV}+P^V V^L)
+\end{align*}
+Defining
+\begin{align*}
+B=\Delta(G^V+F^L+F^{LV}+P^V V^L)
+\end{align*}
+Any arbitrary change would increase B, so at equilibrium, B must be at a minimum.
+
+\subsection*{Part C}
+Taking virtual displacements of $B$
+\begin{align*}
+dB&=dG^V+dF^L+dF^{LV}+P^R dV^L\\
+&=\mu^V dN^V+(-P^LdV^L +\mu ^L dN^L)+(\gamma^{LV}dA^{LV} +\mu ^{LV} dN^{LV})+P^{V}dV^L
+\end{align*}
+such that the constraints require
+\begin{align*}
+dN^L&=-N^V-N^{LV}\\
+dV^L&=4 \pi R^2 dR\\
+dA^{LV}&= 8 \pi R dR
+\end{align*}
+which yields
+\begin{align*}
+dB&=\sum(\mu^L-\mu^V)dN^V+\sum(\mu^{LV}-\mu^V)dN^{LV}+(-4\pi R^2P^L+4\pi R^2P^V+8\pi\gamma^{LV}R)dR
+\end{align*}
+Thus the constraints for equilibrium are
+\begin{align*}
+\mu^V&=\mu^L=\mu^{LV}\\
+P^L &=P^V +\frac{2\gamma^{LV}}{R}
+\end{align*}
+Using the chemical potentials of the liquid and vapour phases
+\begin{align*}
+\mu^V&=\mu^L\\
+\mu^V(T,P_s)+RT\ln\frac{P^V}{P_s}&=\mu^L(T,P_s)+v_f(P^L-P_s)\\
+\end{align*}
+Thus
+\begin{align*}
+P^L&=\frac{RT}{v_f} \ln\frac{P^V}{P_s}+P_s\\
+R_e&=\frac{2\gamma^{LV}}{\frac{RT}{v_f} \ln\frac{P^V}{P_s}+P_s-P^V}\\
+%=\frac{2\gamma^{LV}}{\frac{P_sv_g}{v_f} \ln\frac{P^V}{P_s}+P_s-P^V}
+\end{align*}
+Substituting in properties at 373 K
+\begin{align*}
+R_e&=\frac{2(0.05891)}{\frac{(101.42E3)(1.6720}{0.001043} \ln(1.4)+(101.42E3)-1.4*(101.42E3)}\\
+&=2.155E-9 [m]
+\end{align*}
+
+\subsection*{Part D}
+See the attached plots
+
+
+
+\end{document}

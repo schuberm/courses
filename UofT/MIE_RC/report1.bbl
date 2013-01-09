@@ -1,0 +1,95 @@
+\begin{thebibliography}{11}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname bibnamefont\endcsname\relax
+  \def\bibnamefont#1{#1}\fi
+\expandafter\ifx\csname bibfnamefont\endcsname\relax
+  \def\bibfnamefont#1{#1}\fi
+\expandafter\ifx\csname citenamefont\endcsname\relax
+  \def\citenamefont#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{\citenamefont{Kubo}(1957)}]{JPSJ.12.570}
+\bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Kubo}},
+  \bibinfo{journal}{Journal of the Physical Society of Japan}
+  \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{570} (\bibinfo{year}{1957}),
+  \urlprefix\url{http://jpsj.ipap.jp/link?JPSJ/12/570/}.
+
+\bibitem[{\citenamefont{McQuarrie}(2000)}]{mcquarrie}
+\bibinfo{author}{\bibfnamefont{D.~A.} \bibnamefont{McQuarrie}},
+  \emph{\bibinfo{title}{Statistical Mechanics}} (\bibinfo{publisher}{University
+  Science Books}, \bibinfo{address}{Sausalito}, \bibinfo{year}{2000}).
+
+\bibitem[{\citenamefont{Dove}(1993)}]{dove}
+\bibinfo{author}{\bibfnamefont{M.~T.} \bibnamefont{Dove}},
+  \emph{\bibinfo{title}{Introduction to Lattice Dynamics}}
+  (\bibinfo{publisher}{Cambridge University Press},
+  \bibinfo{address}{Cambridge}, \bibinfo{year}{1993}).
+
+\bibitem[{\citenamefont{Green}(1954)}]{green:398}
+\bibinfo{author}{\bibfnamefont{M.~S.} \bibnamefont{Green}},
+  \bibinfo{journal}{The Journal of Chemical Physics}
+  \textbf{\bibinfo{volume}{22}}, \bibinfo{pages}{398} (\bibinfo{year}{1954}),
+  \urlprefix\url{http://link.aip.org/link/?JCP/22/398/1}.
+
+\bibitem[{\citenamefont{McGaughey}(2004)}]{mcgaugheythesis}
+\bibinfo{author}{\bibfnamefont{A.~J.~H.} \bibnamefont{McGaughey}},
+  \bibinfo{type}{{Ph.D. Thesis}}, \bibinfo{school}{University of Michigan},
+  \bibinfo{address}{Ann Arbor, {MI}} (\bibinfo{year}{2004}).
+
+\bibitem[{\citenamefont{Li et~al.}(1998)\citenamefont{Li, Porter, and
+  Yip}}]{Li1998139}
+\bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Li}},
+  \bibinfo{author}{\bibfnamefont{L.}~\bibnamefont{Porter}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Yip}},
+  \bibinfo{journal}{Journal of Nuclear Materials}
+  \textbf{\bibinfo{volume}{255}}, \bibinfo{pages}{139 } (\bibinfo{year}{1998}),
+  ISSN \bibinfo{issn}{0022-3115},
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/S00223115980%
+00348}.
+
+\bibitem[{\citenamefont{Sellan et~al.}(2010)\citenamefont{Sellan, Turney,
+  McGaughey, and Amon}}]{sellan_CP}
+\bibinfo{author}{\bibfnamefont{D.~P.} \bibnamefont{Sellan}},
+  \bibinfo{author}{\bibfnamefont{J.~E.} \bibnamefont{Turney}},
+  \bibinfo{author}{\bibfnamefont{A.~J.~H.} \bibnamefont{McGaughey}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{C.~H.} \bibnamefont{Amon}},
+  \bibinfo{journal}{Journal of Applied Physics} \textbf{\bibinfo{volume}{108}},
+  \bibinfo{pages}{113524} (\bibinfo{year}{2010}).
+
+\bibitem[{\citenamefont{D.~A.~Broido and Stewart}(2007)}]{Broido1}
+\bibinfo{author}{\bibfnamefont{G.~B. N.~M.} \bibnamefont{D.~A.~Broido},
+  \bibfnamefont{M.~Maloney}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Stewart}},
+  \bibinfo{journal}{Applied Physics Letters} \textbf{\bibinfo{volume}{91}}
+  (\bibinfo{year}{2007}).
+
+\bibitem[{\citenamefont{Esfarjani et~al.}(2011)\citenamefont{Esfarjani, Chen,
+  and Stokes}}]{PhysRevB.84.085204}
+\bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Esfarjani}},
+  \bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Chen}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{H.~T.} \bibnamefont{Stokes}},
+  \bibinfo{journal}{Phys. Rev. B} \textbf{\bibinfo{volume}{84}},
+  \bibinfo{pages}{085204} (\bibinfo{year}{2011}),
+  \urlprefix\url{http://link.aps.org/doi/10.1103/PhysRevB.84.085204}.
+
+\bibitem[{\citenamefont{Larkin et~al.}(2012)\citenamefont{Larkin, Turney,
+  Massicotte, McGaughey, and Amon}}]{larkin}
+\bibinfo{author}{\bibfnamefont{J.~M.} \bibnamefont{Larkin}},
+  \bibinfo{author}{\bibfnamefont{J.~E.} \bibnamefont{Turney}},
+  \bibinfo{author}{\bibfnamefont{A.~D.} \bibnamefont{Massicotte}},
+  \bibinfo{author}{\bibfnamefont{A.~J.~H.} \bibnamefont{McGaughey}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{C.~H.} \bibnamefont{Amon}},
+  \bibinfo{journal}{Submitted to Phys. Rev. B}  (\bibinfo{year}{2012}).
+
+\bibitem[{\citenamefont{Maradudin and Fein}(1962)}]{PhysRev.128.2589}
+\bibinfo{author}{\bibfnamefont{A.~A.} \bibnamefont{Maradudin}}
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{A.~E.} \bibnamefont{Fein}},
+  \bibinfo{journal}{Phys. Rev.} \textbf{\bibinfo{volume}{128}},
+  \bibinfo{pages}{2589} (\bibinfo{year}{1962}),
+  \urlprefix\url{http://link.aps.org/doi/10.1103/PhysRev.128.2589}.
+
+\end{thebibliography}

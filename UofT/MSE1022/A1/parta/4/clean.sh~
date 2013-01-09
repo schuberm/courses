@@ -1,0 +1,6 @@
+#!/bin/bash
+grep -A 1 "Step PotEng KinEng TotEng Press Volume" log.lammps > eam1.txt
+sed -e ''s/[a-zA-Z]//g'' -e ''s/--//g'' -e 's/^[ \t]*//g' -e ''/^$/d'' eam1.txt > eam2.txt
+awk '{ getline ln < "a0.txt"; print ln" "$0 }' eam2.txt > eam.txt
+rm eam1.txt
+rm eam2.txt

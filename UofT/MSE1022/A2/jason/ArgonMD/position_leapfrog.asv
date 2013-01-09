@@ -1,0 +1,41 @@
+function [x]=position_leapfrog(N,barostat,t_step,x,p_half,m,L,tau_p,P,Pset,eps_p)
+
+top = 1 + (eps_p*t_step/2);
+bottom = 1 - (eps_p*t_step/2);
+
+for i=1:N
+    for k=1:3
+        if barostat==1   
+            x(i,k) = x(i,k)*top/bottom + (p_half(i,k)/m(1,i)) ;
+        else
+            x(i,k) = x(i,k) + (p_half(i,k))*t_step/m(1,i);
+        end
+        
+        if x(i,k)>L(1,k)   %should it be <=???????
+            x(i,k) = x(i,k) - L(1,k);
+        end
+        if x(i,k)<0
+            x(i,k) = x(i,k) + L(1,k);
+        end
+        
+    end
+end
+            
+
+
+% for i=1:N
+%     for k=1:3
+%         if barostat==1
+%             x(i,k) = (1 + eps_p*t_step + t_step*t_step*(0.5/(tau_p*tau_p))*(P-Pset) + (0.5*t_step*t_step*eps_p*eps_p))*x(i,k) + p_half(i,k)*t_step/m(1,i) + 0.5*t_step*t_step*eps_p*p(i,k)/m(1,i);
+%         else
+%             x(i,k) = 
+%         end
+%         if x(i,k)>=L(1,k)   %should it be <=???????
+%             x(i,k) = x(i,k) - L(1,k);
+%         end
+%         if x(i,k)<=0
+%             x(i,k) = x(i,k) + L(1,k);
+%         end
+%     end
+% end
+

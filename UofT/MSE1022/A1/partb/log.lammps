@@ -1,0 +1,84 @@
+LAMMPS (29 Jan 2012)
+#sieq.lam
+clear
+units metal
+atom_style atomic
+boundary p s p
+
+lattice diamond 5.43085
+Lattice spacing in x,y,z = 5.43085 5.43085 5.43085
+
+region box block 0 3 0 3 0 3
+create_box 1 box
+Created orthogonal box = (0 0 0) to (16.2926 16.2926 16.2926)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 box
+Created 234 atoms
+#delete_atoms porosity box 0.00463 482793
+#create_atoms 1 single 0.7 0.3 0.3
+
+pair_style sw
+pair_coeff * * Si.sw Si
+mass 1 28
+neighbor 1.0 bin
+neigh_modify every 1 delay 5 check yes
+
+#velocity all create 1 20199349 dist gaussian
+#velocity all zero linear
+#velocity all zero angular
+
+#log 	si_$x.lammps
+timestep 0.005
+thermo 100
+thermo_style custom step atoms temp pe ke etotal press vol
+#run 100
+dump 1 all cfg 10 Si_*.cfg id type xs ys zs
+#fix 1 all nvt temp 1.0 1.0 1.0
+#run 20000
+#run 100
+#unfix 1
+#fix 1 all box/relax iso 0.0 vmax 0.001
+#run 20000
+#fix 1 all nvt temp 0.0 0.0 0.0
+minimize 0 0 1000 100000
+WARNING: Resetting reneighboring criteria during minimization (min.cpp:167)
+Memory usage per processor = 2.75366 Mbytes
+Step Atoms Temp PotEng KinEng TotEng Press Volume 
+       0      234            0    -936.7056            0    -936.7056    55.905129    4324.8646 
+      10      234            0    -936.7056            0    -936.7056    19.712437    4324.8646 
+Loop time of 0.022701 on 1 procs for 10 steps with 234 atoms
+
+Minimization stats:
+  Stopping criterion = linesearch alpha is zero
+  Energy initial, next-to-last, final = 
+        -936.705595823     -936.705598621     -936.705598621
+  Force two-norm initial, final = 0.00308748 0.000516488
+  Force max component initial, final = 0.000514579 7.73553e-05
+  Final line search alpha, max atom move = 0.0625 4.83471e-06
+  Iterations, force evaluations = 10 46
+
+Pair  time (%) = 0.0218356 (96.1876)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.000106096 (0.467363)
+Outpt time (%) = 0 (0)
+Other time (%) = 0.000759363 (3.34506)
+
+Nlocal:    234 ave 234 max 234 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    350 ave 350 max 350 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs: 5832 ave 5832 max 5832 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 5832
+Ave neighs/atom = 24.9231
+Neighbor list builds = 0
+Dangerous builds = 0
+min_style sd
+#run 1000
+
+#next x
+#jump si.lam
+#jump si.lam loop_lattconst

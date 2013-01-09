@@ -1,0 +1,147 @@
+
+%Jason Larkin
+%September 15, 2009
+%Description: MD code to simulate Argon. 
+%Code stolen from Eric Landry.
+%This code uses all normal metric units, e.g. meters, seconds, kg Joules,
+%etc.
+%Future versions will used some sort of modified units.
+%-------------------------------------------------------
+%-------------PROGRAM PARAMETERS------------------------
+%-------------------------------------------------------
+%Declare Global Variables
+ncell=4;                            %number of unit cells used in x,y,z
+%N=2^(3*ncell-1);                    %number of atoms based on ncells
+N=256;
+L(1,1:3)=zeros(1,3);                %contains the simulation cell size
+pi = pi;                            %contains value of pi, in C this would be pi = atan(1) * 4
+%a_0 = (3.4E-10)*1.01;
+%Specify LJ values for Argon
+    epsilon_Ar = 1.67E-21;              %aJ (1.67E-21 Joules) aJ=1E-18 J
+    sigma_Ar = 3.4E-10;                 %Angstroms 3.4E-10 meters
+a_0 = 5.30E-10/sigma_Ar;           %the lattice constant of Ar: http://www.infoplease.com/periodictable.php?id=18
+mass_Ar = 6.6326E-26;               %1E-28 kg (6.6326E-26 kg)
+mass_Ar = mass_Ar/mass_Ar;
+kb = 1.3806E-23;                    %aJ/k (1.3806E-23 J/K)
+a = 2.5;                            %Angstroms cutoff radius in terms of sigma_Ar 
+a2 = a*a;
+cutoff = 1;                         %true=1, use the cutoff radius. This of course introduces a discontinuity in the force at r=a
+%Main Loop Control Variable
+x(1:N,1:3)=zeros(N,3);              %position
+p(1:N,1:3)=zeros(N,3);              %momentum
+p_half(1:N,1:3)=zeros(N,3);         
+x_o(1:N,1:3)=zeros(N,3);            %initial position
+m(1,1:N) = zeros(N,1);              %mass of the particle
+m(1,1:N) = 1; 
+ident_letter(1,1:N)=zeros(N,1);     %letter identifying the particle, e.g. C, N, etc.
+rij(1,1:3)=0;                       %pairwise distance between atoms i and j
+F(1:N,1:3)=zeros(N,3);           %force on particle (1E-28 kg Anstromg/fs)
+
+%time has units of sigma/sqrt(epsilon/mass)) = secs.  1 time step = 
+t_step = 0.0005;                    % time step (in units of 2.1427E-12 s)
+t_total = 5000;                     % total simulation time (in number of steps at rate t_step)
+t = 0;                              % current time (in number of time steps)
+t_stats = 10;                       % how often energy and momentum statistics are outputted
+props(1,1:5)=0;                     % properties to save
+pIndex=1;                           % properties index
+
+%----NOT USED
+t_xyz = 1000;                       % how often data is outputed for Chime
+t_cfg = t_total+1;                  % how often data is outputed for Atomeye
+t_radial = t_total+1;               % how often the radial distribution function is calculated
+RDF = zeros(5000,2);
+thermostat = 1;	%0=false	
+barostat = 1; 			
+quench = 0;
+eta_t = 0.0;                        % thermostat parameter
+tau_t = 0.05;                       % thermostat time constant
+%----NOT USED
+Tset_K = 100.;                      % temperature set (K) 
+Tset = Tset_K*kb/epsilon_Ar;    % reduced temperature
+%I don't like this style: * kb * (1./epsilon_Ar); 
+
+%Barostat Params
+Pset = 1.;                          % desired simulation pressure here (non-dim)
+eps_p = 0.0;                         % barostat parameter
+tau_p = 1.0;                        % barostat time constant
+V = 0; 
+P_viral = 0;
+P = 0;
+% Quench parameters
+eta = 0.;                           % quench parameter, remove kinetic energy from the system
+%Calculate Potential Energy cutoff value
+pe_cutoff = pe(a2);
+%Calculate Force Cutoff value
+f_cutoff=force_eval(a2);
+
+%Set initial conditions if the simulation is not a restart
+RESTART=0;
+%Set to run in NVE to initialize from 0 K state
+rescale=0;
+
+if RESTART==1   
+    [x,V,L]=initialization_position(N,L,m,mass_Ar,a_0,ncell);
+    [x,p,F,P,P_viral,T,KE,PE]=initialization_vel(N,L,pe_cutoff,a,a2,f_cutoff,cutoff,m,x,Tset,V);
+    [eta_t,eps_p]=initialization_thermo(thermostat,barostat,t_step,eta_t,eps_p,tau_t,tau_p,Tset,T,Pset,P);
+else
+    %read_data
+    str = 'D:\Classes\CMU\MD\HW3\Problem 2\Initial\';
+    x=dlmread(strcat(str,'x.dat'));
+    m=dlmread(strcat(str,'m.dat'));
+    p=dlmread(strcat(str,'p.dat'));
+    F=dlmread(strcat(str,'F.dat'));
+    L=dlmread(strcat(str,'L.dat'));
+    T=temperature(N,p,m);
+    V = L(1,1)*L(1,2)*L(1,3);    %system volume
+    [F,P,P_viral]=force(N,L,a2,f_cutoff,a,x,cutoff,V,T);
+
+%     	for k=1:3 
+%         L(1,k) = max(max(x))+a_0/2;	
+%     end
+    plot_pos(x,L);
+end
+pause
+%[x,v,F,P,P_viral,T,KE,PE]=initialization(N,L,pe_cutoff,a,a2,f_cutoff,cutoff,x,m,V,t_step,mass_Ar,v);
+
+%Equilibriate using velocity rescaling
+%[x,v,F,P,P_viral,T,KE,PE]=equil_vel_rescale(t_total,N,L,pe_cutoff,a,a2,f_cutoff,cutoff,x,epsilon_Ar,sigma_Ar,m,kb,V,t_step,mass_Ar);
+
+
+
+%Evolve system using Leap-Frog
+%-------------------------------------------------------
+%------------SIMULATION---------------------------------
+%-------------------------------------------------------
+
+for t=1:t_total  
+p_half=half_momentum(N,p,F,t_step,eta_t,eps_p,p_half);
+[L,V] = baro_size(L,eps_p,t_step,barostat);
+[x]=position_leapfrog(N,t_step,x,p_half,p,m,L,tau_p,eps_p,P,Pset);
+[eps_p,eta_t]=baro_param(barostat,thermostat,eta_t,t_step,tau_t,T,Tset,eps_p,tau_p,P,Pset);
+[F,P,P_viral]=force(N,L,a2,f_cutoff,a,x,cutoff,V,T);
+p=momentum(N,p_half,F,t_step,eta_t,eps_p);
+p_sum=momentum_total(N,p);
+if rescale==1
+p=vel_rescale(N,p,m,Tset);
+end
+            if rem(t,t_stats)==0 
+                plot_pos(x,L);
+                PE=Pot_Energy(N,L,pe_cutoff,a,a2,f_cutoff,cutoff,x);
+                KE = ke(N,p,m);
+                T=temperature(N,p,m);
+                RDF=rdf(N,t,x,L,RDF);
+                T;
+                KE+PE;
+                props(pIndex,1)=T;
+                props(pIndex,2)=P;
+                props(pIndex,3)=V;
+                props(pIndex,4)=KE;
+                props(pIndex,5)=PE;
+                props(pIndex,6)=PE+KE;
+                props(pIndex,:);
+                pIndex=pIndex+1;
+                %pause
+            end
+end
+
+RDF(:,2)=RDF(:,2)/pIndex;

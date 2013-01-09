@@ -1,0 +1,290 @@
+
+%Jason Larkin
+%September 15, 2009
+%Description: MD code to simulate Argon. 
+%Code stolen from Eric Landry (thanks dude).
+
+%Declare Global Variables
+
+N=256; %number of atoms
+L(1,3)=zeros(1,3); %contains the simulation cell size
+pi = pi; %contains value of pi, in C this would be pi = atan(1) * 4
+a = 2.5; %cutoff radius in terms of sigma_Ar
+a2 = a*a;
+cutoff = 'true'; %true=use the cutoff radius. This of course introduces a discontinuity in the force at r=a
+
+%Specify LJ values for Argon
+epsilon_Ar = 1.67E-21;     %Joules
+sigma_Ar = 3.4E-10;    %meters
+mass = 6.63E-26     %kg
+kb = 1.3806E-23     %J/K
+
+%Main Loop Control Variable
+
+x(1:N,3)=zeros(N,1:3);  %position
+p(1:N,3)=zeros(N,1:3);  %momentum
+x_o(1:N,3)=zeros(N,1:3);  %initial position
+p_half(1:N,3)=zeros(N,1:3); %momentum at t+delt/2
+m(1,1:N) = zeros(N,1);      %mass of the particle
+ident_letter(1,1:N)=zeros(N,1); %letter identifying the particle, e.g. C, N, etc.
+rij(1,1:3)=0;   %pairwise distance between atoms i and j
+F(1:N,1:3)=zeros(N,1:3);    %force on particle N
+
+t_step = 0.0002;			% time step (real time)
+t_total = 500;		 		% simulation time (time steps)
+t = 0;						% current time (time steps)
+t_stats = 10;					% how often energy and momentum statistics are outputted
+t_xyz = 1000;					% how often data is outputed for Chime
+t_cfg = t_total+1;			% how often data is outputed for Atomeye
+t_radial = t_total+1;			% how often the radial distribution function is calculated
+
+thermostat = 'false';		
+barostat = 'false';			
+quench = 'false';
+
+eta_t = 0.;				% thermostat parameter
+tau_t = 0.05;			% thermostat time constant
+Tset_K = 40.;           % temperature set (K) 
+Tset = Tset_K * kB * (1./epsilon_Ar);   % temperature set (non-dim)
+
+
+Pset = 0.;				% desired simulation pressure here (non-dim)
+eps_p = 0.;				% barostat parameter
+tau_p = 1.0;				% barostat time constant
+
+% Quench parameters
+eta = 0.;				% quench parameter, remove kinetic energy from the system
+
+% simulation cell size
+	for k=1:3 
+        L(1,k) = 6.31724;	% desired system size (non-dim)
+    end
+	V = L(1,1)*L(1,2)*L(1,3);    %system volume
+    
+%energy and force at cutoff
+    pe_cutoff = pe(a2);
+    f_cutoff = force(a2);   %includes an extra a in the denominator
+
+
+%initial positions (read data from input file)
+
+INPUT=dlmread('D:\CMU\MDCode\Eric\Argon\fcc256_40.txt');
+
+m(1,:)=INPUT(:,1); x_o(:,1) = INPUT(:,2); x_o(:,2) = INPUT(:,3); x_o(:,3) = INPUT(:,4); 
+p(:,1) = INPUT(:,5); p(:,2) = INPUT(:,6); p(:,3) = INPUT(:,7);
+
+%  	// close and open files
+% 		if (ii != 0) {
+% 			output.close();
+% 			stats_out.close();
+% 			chime_out.close();
+% 		}
+% 		sprintf(filename, "output_%d.txt", ii);
+% 		output.open(filename);
+% 		sprintf(filename, "stats_%d.txt", ii);
+% 		stats_out.open(filename);
+% 		sprintf(filename, "positions_%d.xyz", ii);
+% 		chime_out.open(filename);
+		
+		% give  atoms a small initial momentum
+%         p_rand(:,1) = zeros(N,1:3); p_rand(:,2) = zeros(N,1:3); p_rand(:,3) = zeros(N,1:3);
+%         
+%         p_rand(:,1) = rand(1,N);
+%         
+% 		double p_sum[3], p_sub[3];
+% 		double p_random;
+% 		srand((unsigned)time(NULL)); 	// initial seed for random function
+% /*		for (i=0; i<N; i++){
+% 			for (k=0; k<3; k++){
+% 				p_random = rand();
+% 				if (p_random < (RAND_MAX/2)) p_random = p_random*(-1);
+% 				p[i][k] = p_random;
+% 			}
+% 		} */
+
+RESTART=='false';
+if RESTART == 'false'
+    x(:,:)=x_o;     %set initial conditions
+    % scale initial momenta to zero
+            p_sum(1,1:3)=0; 
+            for k=1:3
+            p_sum(1,k) = p_sum(1,k)+sum(p(:,k)); % sum momentum
+            end
+            p_sub(:,3) = p_sum(:,1:3)/N;	% find amount to subtract from each atom
+            p(:,1:3) = p(:,1:3)-p_sub(:,1:3); % subtract momentum
+
+		% scale momentum to get close to desired temperature
+		KE = ke(p,m);
+		KE_set = 1.5*(N-1.)*Tset;  %set kb*T
+		alpha = (KE_set)/KE;
+		alpha = sqrt(alpha);
+		p(:,1:3) = p(:,1:3)*alpha;
+		
+        clear p_sum
+        p_sum(1,1:3)=0; % sum again and output to screen
+        for k=1:3
+            p_sum(1,k) = p_sum(1,k)+sum(p(:,k)); % sum momentum
+        end
+
+		% calculate initial T, PE, KE, and TE
+		KE = ke(p, m);
+		T = (2.*KE)/(3.*(N-1.));
+		PE = 0.;
+        PE=PE_initial(PE,rij,L,pe_cutoff,a,r2,a2,f_cutoff,cutoff)
+		TE = KE + PE;
+		
+		% find initial forces/pressure
+        [F,rij,r2,f,P_viral,P]=f_initial(x,L,rij,a,a2)
+
+		% find initial barostat and thermostat parameters
+		if thermostat == 'true' 
+            eta_t = eta_t + t_step*(1./(tau_t*tau_t))*((T/Tset)-1.);
+        else
+            eta_t = 0.;
+        end
+		if barostat == 'true'
+            eps_p = eps_p + t_step*(1./(tau_p*tau_p))*(P-Pset);
+        else
+            eps_p = 0.;
+        end
+end
+        
+		% output "stats" file header and initial data
+% 		stats_out << "Time\tPE/N\tKE/N\tTE/N\tT(K)\tP(MPa)\tpx\tpy\tpz\tL" << endl;
+% 		stats_out << "0\t"<<PE/N<<"\t"<<KE/N<<"\t"<<TE/N<<"\t"<<T*(epsilon_Ar/kB)<<"\t"<<(P*(epsilon_Ar/(sigma_Ar*sigma_Ar*sigma_Ar)))/1000000<<"\t"<<p_sum[0]<<"\t"<<p_sum[1]<<"\t"<<p_sum[2]<<"\t"<<L[0]<<endl;		
+		
+%START SIMULATION
+		for (t=1; t<=t_total; t++) {
+			
+            %output to screen every t_stats
+            if rem(t,t_stats)==0
+            t, TE,  T*(epsilon_Ar/kB), L(1,1), sqrt(p_sum(1,1)^2 + p_sum(1,2)^2 + p_sum(1,3)^2)
+            end
+			
+            %find momentum at half time step
+            p_half=half_momentum(quench,p,F,eta,t_step,eta_t,eps_p);
+            %Apply barostat to find new cell size, if active and calculate
+            %new barostat parameters
+            [L,V,eps_p,eta_t]=baro_size(barostat,L,eps_t,t_step,V,eta_t,tau_t,T,Tset,P,Pset,eps_p)
+			%find positions at t+delt
+            x=position(barostat,x,eps_p,t_step,tau_p,P,Pset,m,L)
+            
+			% find forces/pressure at t+delt
+            [F,P_viral]=force_half(F,P_viral,rij,L,a2,f_cutoff,a)
+            % find momenta at t+delt	
+            p=momentum(quench,p_half,F,t_step,eta,eta_t,eps_p)	  
+			% find new temperature
+			T = (2*ke(p,m))/(3*(N-1));
+			% find new pressure
+			P = (P_viral/(3*V)) + ((N*T)/V);
+			
+            % he has this commented out
+% 			// scale momentum to desired T (constant kinetic energy ensemble)
+% 			// specify the time range where this is to be applied
+% 	/*		if (t >= 0 && t < 10000) {
+% 				KE = ke(p,m);
+% 				KE_set = 1.5*(N-1)*Tset;	
+% 				alpha = (KE_set)/KE;
+% 				alpha = sqrt(alpha);
+% 				for (i=0; i<N; i++){
+% 					for (k=0; k<3; k++) p[i][k] = p[i][k]*alpha;
+% 				}
+% 			} */
+
+for i=1:N
+    for j=(N/2):N
+        if i~=j
+            for k=1:3
+                rij(1,k) = x(i,k) - x(j,k);
+                rij(1,k)=periodic(rij(1,k),L);
+            end
+            r2 = rij(1,1)^2 + rij(1,2)^2 + rij(1,3)^2;
+            if r2<a2
+                f = force(r2);
+                for k=1:3
+                    q = 0.5*f*rij(1,k)*((p(j,k)/m(1,2)) + (p(i,k)/m(1,1)));
+                end
+            end
+        end
+    end
+end
+
+% C code
+% 			for (i = 0; i<N/2; i++) {
+% 				for (j = N/2; j<N; j++) {
+% 					if (i != j) {
+% 						for (k=0; k<3; k++) {
+% 							rij[k] = x[i][k] - x[j][k];
+% 							if (rij[k] > (0.5*L[k])) rij[k] = rij[k] - L[k];    // nearest image
+% 							if (rij[k] < (-0.5*L[k])) rij[k] = rij[k] + L[k];
+% 						}
+% 						r2 = rij[0]*rij[0] + rij[1]*rij[1] + rij[2]*rij[2];
+% 						if (r2 < a2) {
+% 							f = force(r2);
+% 							for (k = 0; k<3; k++) 
+%                                 q = 0.5*f*rij[k]*((p[j][k]/m[1]) + (p[i][k]/m[0]));
+% 						}
+% 					}
+% 				}
+% 			}
+
+% Calculate PE, KE, TE						
+			
+			if rem(t,t_stats)==0
+            total_energy(
+            end
+
+			// output 
+			if (t%stats == 0) {			
+				// calculate PE, KE and TE
+				KE = ke(p,m);
+				T = (2.*ke(p,m))/(3.*(N-1.));
+				PE = 0.;
+				for (i=0; i<N; i++){
+					for (j=i+1; j<N; j++){
+						for (k=0; k<3; k++) {
+							rij[k] = x[i][k] - x[j][k];
+							if (rij[k] > (L[k]/2.)) rij[k] = rij[k] - L[k];    // nearest image
+							if (rij[k] < (-L[k]/2.)) rij[k] = rij[k] + L[k];
+						}
+						r2 = rij[0]*rij[0] + rij[1]*rij[1] + rij[2]*rij[2];
+						if (r2 < a2) {
+							if (cutoff == true) PE = PE + pe(r2) - pe_cutoff;
+							else {
+								PE = PE + pe(r2) - pe_cutoff + (f_cutoff*a*(sqrt(r2) - a));	
+							}
+						}
+					}	
+				}
+				TE = KE + PE;
+				
+				
+													
+				// calculate total momenta	
+				for (k=0; k<3; k++) p_sum[k] = 0.;	
+				for (i=0; i<N; i++){
+					for (k=0; k<3; k++) p_sum[k] = p_sum[k] + p[i][k];
+				}
+
+				//	output data
+				
+				stats_out<<t<<"\t"<<PE/N<<"\t"<<KE/N<<"\t"<<TE/N<<"\t"<<T*(epsilon_Ar/kB)<<"\t"<<(P*(epsilon_Ar/(sigma_Ar*sigma_Ar*sigma_Ar)))/1000000<<"\t"<<p_sum[0]<<"\t"<<p_sum[1]<<"\t"<<p_sum[2]<<"\t"<<L[0]<<endl;		
+			}
+			
+			// output
+			if (t%xyz == 0) chime(t, x, ident_letter);			
+			if (t%cfg == 0 && t>0) atomeye(filename, cfg, t, L, ident_letter, m, x, p);
+			if (t%radial == 0) gr(t, x, L);
+			
+		} /////// simulation end ////////
+				
+	} // multiple simulation loop
+	
+} // end of main loop
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A11}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Problem 1}
+\begin{itemize}
+\item a. Since Phosphorus acts as a donor of electrons (n-type), the minority carriers are the holes and the majority carriers are electrons.
+\item b. Since $N_d>>n_i$, we can use the relations (9.5-25) with $N_a=0$:
+\begin{align*}
+n_0\approx N_d=10E17 \unit{cm^{-3}}\\
+p_0\approx \frac{n_i^2}{N_d}=\frac{(1.5E10)^2}{10^{17}}=2250 \unit{cm^{-3}}
+\end{align*}
+We have the situation where the excess carrier density is everywhere much less than the majority carrier density so, the transport coefficients become the constant transport coefficients of the minority carrier. The concentration of holes $x>0$ with the boundary condition $\delta p(0)=10E15 \unit{cm^{-3}}$ gives:
+\begin{align*}
+p(x)&=A_0e^{-x/\sqrt{D_p\tau_p}}+p_0\\
+    &=10^{15}e^{-x/\sqrt{10^{-5}}}+2250	
+\end{align*}
+The concentration of electrons $\delta p(0)=\delta n(0)$:
+\begin{align*}
+n(x)&=A_0e^{-x/\sqrt{D_p\tau_p}}+n_0\\
+    &=10^{15}e^{-x/\sqrt{10^{-5}}}+10^{17}
+\end{align*}
+\item c. At $x=5 \mu m$, 
+\begin{align*}
+J_p(x)&=\frac{A_0D_p}{Lp}e^{-x/\sqrt{D_p\tau_p}}\\
+    &=3.157E18 \unit{cm^{-2}s^-{1}}\\
+J_n(x)&=\frac{A_0D_n}{Lp}e^{-x/\sqrt{D_p\tau_p}}\\
+    &=7.89E18 \unit{cm^{-2}s^-{1}}
+\end{align*}
+\end{itemize}
+
+\section*{Problem 2}
+\begin{itemize}
+\item a. Since the material is strongly n-type:
+\begin{align*}
+n_0\approx N_d=10E16 \unit{cm^{-3}}\\
+p_0\approx \frac{n_i^2}{N_d}=\frac{(1.5E10)^2}{10^{16}}=22500 \unit{cm^{-3}}\\
+\end{align*}
+The lifetime of the majority carriers:
+\begin{align*}
+g_{0n}&=g_{0p}\\
+\tau_{n0}&=\frac{n_0\tau_{p0}}{p_0}\\
+&=8.88E7 \unit{s}
+\end{align*}
+\item b. In thermal equilibrium, the generation rate for electrons and holes are equal:
+\begin{align*}
+g_{0n}&=g_{0p}\\
+g_{0p}&=\frac{p_0}{\tau_{p0}}\\
+&=1.125E9 \unit{cm^{-3}s^{-1}}
+\end{align*}
+\item c. In thermal equilibrium, the recombination rate is equal to the generation rate:
+\begin{align*}
+r_{0n}&=r_{0p}=g_{0n}=g_{0p}\\
+r_{0n}&=1.125E9 \unit{cm^{-3}s^{-1}}
+\end{align*}
+\end{itemize}
+\section*{Problem 3}
+As consequence of the relative size of the majority and minority concentrations in low level injection, the minority carriers will effectively see very little change from the equilibrium concentrations of the majority carriers and the lifetime of such carriers will be nearly unchanged. The majority carriers, however, will experience the large change in minority carrier concentration from equilibrium because there will now be a greater chance for a given majority carrier to bump into a minority carrier, thereby significantly decreasing the majority carrier lifetime. As a result, the definition of excess carrier lifetime reduces to the minority carrier lifetime.   
+\end{document}
+

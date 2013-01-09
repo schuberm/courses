@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336: Research Paper}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newtheorem{mydef}{Thereom}
+\numberwithin{equation}{section}
+\linespread{2.0}
+
+
+\begin{document}
+\section*{Green's Functions}
+
+Green's functions are defined as solutions of inhomogeneous differential equations of the type ($\tilde{L}$ is a linear differential operator):
+\begin{align*}
+	\tilde{L}G(\mathbf{r},\mathbf{r'})=\delta(\mathbf{r}-\mathbf{r'})\\
+        (z-\tilde{L(\mathbf{r})})G(\mathbf{r},\mathbf{r'};z)=\delta(\mathbf{r}-\mathbf{r'})\\
+\tilde{L(\mathbf{r})}\phi_n(\mathbf{r})=\lambda_n\phi_n(\mathbf{r})
+\end{align*}
+The corresponding matrix definition of a Green's function is:
+\begin{align*}
+	(A-\lambda B)G&=I\\
+        G_{\lambda}&=(A-\lambda B)^{-1}
+\end{align*}
+\begin{mydef}Fundamental Theorem of Green's Functions
+\end{mydef}
+Let $G(\mathbf{r},\mathbf{r'})$ be a function which:
+Satisfies the differential equation
+\begin{align*}
+	\tilde{L}G(\mathbf{r},\mathbf{r'})=0
+\end{align*}
+everywhere in (a,b) except at the point $\mathbf{r}=\mathbf{r'}$.
+Satisfies a the given homogeneous boundary conditions.
+Is continuous for fixed $\mathbf{r'}$, even at $\mathbf{r}=\mathbf{r'}$.
+Has continuous first and second derivative everywhere in (a,b), except at the point $\mathbf{r}=\mathbf{r'}$, where it has a jump discontinuity:
+\begin{align*}
+	\frac{d}{dx}G(\mathbf{r},\mathbf{r'})|_{\mathbf{r'+}}^{\mathbf{r'+}}=\frac{-1}{p(\mathbf{r'})}
+\end{align*}
+
+\begin{align*}
+	\delta(\mathbf{r}-\mathbf{r'})L(\mathbf{r})&=\bra{\mathbf{r}}L\ket{\mathbf{r'}}\\
+	G(\mathbf{r},\mathbf{r'};z)&=\bra{\mathbf{r}}G(z)\ket{\mathbf{r'}}\\
+        \delta(\mathbf{r}-\mathbf{r'})=\bra{\mathbf{r}}\ket{\mathbf{r'}}
+\end{align*}
+
+The poles of an appropriate analytic continuation of G in the complex E-plane can be interpreted as the energy (the real pole) and the inverse life-time (the imaginary part).
+
+
+\end{document}
+

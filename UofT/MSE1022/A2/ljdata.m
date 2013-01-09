@@ -1,0 +1,28 @@
+clear all;
+clc;
+
+ep=0.2379;
+%ep=0.010316;
+s=3.405;
+
+x=0:0.01:10;
+v=4.*ep.*((s./x).^12-(s./x).^6);
+
+b=(1.69e-8.*exp(-x./0.273)+102e-12./x.^6)*6.241509*10^11*23.06055;
+
+figure(1);
+plot(x,v,x,b,'--','LineWidth',2);xlim([1 8]); ylim([-2 10]); grid on; xlabel('atomic separation (Angstrom)'); ylabel('Potential Energy (kcal/mol)');legend('LJ','Buckingham');
+print('-dpsc','fit.eps');
+
+out=zeros(length(x),2)
+out(:,1)=x
+out(:,2)=v
+dlmwrite('ljfit.dat',out,'-append','delimiter',' ');
+
+buck = @(a,x) (a(1)*exp(-a(2).*x)-a(3)./x.^6);
+%buck = @(a,x) (a(1)*exp(-a(2).*x));
+
+a0=[0;-1;-1];
+%a0=[1;1];
+a1 = nlinfit(x,v,buck,a0);
+

@@ -1,0 +1,206 @@
+\newpage
+\section*{Scripts}
+
+\subsection*{LAMMPS input script}
+\begin{verbatim}
+##########MEASURE SED##########################################################
+label loop_seed
+variable iseed loop 5
+variable seed index 11111 22222 33333 44444 55555
+clear
+
+#------------READ STRUCTURE-----------------------------------------------------------
+units			lj
+atom_style		atomic
+read_data		interface.data
+#group         	        Ar1 type = 1
+#group         	        Ar3 type = 3
+group			c1 id <= 256
+group			c2 id <> 257 512 
+group			c3 id <> 513 768
+group			c4 id <> 769 1024
+group			c5 id <> 1025 1280
+group			c6 id <> 1281 1536
+group			c7 id <> 1537 1792
+group			c8 id >= 1793
+#------------LJ Potentials------------------------------------------------------------------
+pair_style		lj/cut 2.5
+#pair_coeff		1 1 1.0 1.0
+pair_coeff		* * 1.0 1.0
+pair_modify             shift yes
+#------------Variables----------------------------------------------------------------------
+#------------LJ Parameters
+variable    	kB 		equal 1.3806504e-23 	# [J/K] Boltzmann
+variable	sigma_Ar 	equal 3.4e-10 	# m
+variable	eps_Ar		equal 1.67e-21	# J
+variable	mass_Ar	        equal 6.63e-26	# kg
+variable	tau_Ar		equal 2.1423e-12	# s
+#------------thermo Parameters
+variable    	T_melt 	        equal 300*(${kB}/${eps_Ar})
+variable	T_0K		equal 0.001
+
+variable   	dt 		equal 0.002
+variable	quench_rate	equal 1.0
+variable	quench_length   equal 10000
+#------------kappa parameters
+variable    	p 		equal 100000 	# correlation length
+variable    	s 		equal 10  		# sample interval
+variable    	d 		equal $p*$s 		# dump interval 
+variable	scaleJ		equal ${eps_Ar}*${sigma_Ar}/${tau_Ar}
+
+#-------------SED parameters
+variable	w_step		equal 2^5		#32 steps
+variable	w_total	        equal 2^16		#65 some 000 steps
+variable	t_total	        equal 2^20		#1048576 steps
+variable	num_ffts	equal ${t_total}/${w_total}
+
+#label loop2
+#variable b loop 3
+#variable T_run index ${T_1} ${T_2} ${T_3}
+
+variable 	T_run 		equal 20*(${kB}/${eps_Ar})
+variable	alat		equal 1.5635
+
+#log 	log_quench_$a_$b.lammps
+log 	log_heat_${iseed}.lammps
+
+#------------ NVE rescale ---------------------------------------------------------------------	
+
+	velocity 		all create ${T_run} ${seed} rot yes dist gaussian
+
+	fix 			1 all nve
+	fix 			2 all temp/rescale 1 ${T_run} ${T_run} 0.01 1.0
+	timestep		${dt}
+	thermo_style  	custom step temp press etotal vol
+	thermo			1000
+        dump 2 all cfg 2000 pos.*.cfg id type xs ys zs # Visualize with AtomEye
+	run             	500000
+#	run             	1000
+	unfix 			1
+	unfix 			2
+
+#------------ NVE -----------------------------------------------------------------------------	
+
+	fix 			1 all nve
+	timestep		${dt}
+	thermo_style  	custom step temp press etotal vol
+	thermo			1000
+	run             	500000	
+#	run             	10000
+	unfix 			1
+
+#------SED-------------------------------------------------------------------------
+
+label loop_fft
+variable ifft loop ${num_ffts}
+
+log 	log_SED_${iseed}_${ifft}.lammps
+	reset_timestep  	0
+	fix 			1 all nve
+	dump 			vel1 c1 custom ${w_step} dump_c1_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel1 sort id
+	dump 			vel2 c2 custom ${w_step} dump_c2_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel2 sort id
+	dump 			vel3 c3 custom ${w_step} dump_c3_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel3 sort id
+	dump 			vel4 c4 custom ${w_step} dump_c4_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel4 sort id
+	dump 			vel5 c5 custom ${w_step} dump_c5_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel5 sort id
+	dump 			vel6 c6 custom ${w_step} dump_c6_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel6 sort id
+	dump 			vel7 c7 custom ${w_step} dump_c7_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel7 sort id
+	dump 			vel8 c8 custom ${w_step} dump_c8_${iseed}_${ifft}.vel vx vy vz
+	dump_modify 		vel8 sort id
+	thermo_style 		custom step temp press vol
+	thermo			5000
+	timestep		${dt}
+	run			${w_total}
+	unfix			1
+	undump			vel1
+	undump			vel2
+	undump			vel3
+	undump			vel4
+	undump			vel5
+	undump			vel6
+	undump			vel7
+	undump			vel8
+
+			next ifft
+		jump in.LJArint.SED loop_fft
+	next seed
+	next iseed
+jump in.LJArint.SED loop_seed
+\end{verbatim}
+\subsection*{GULP input script}
+\begin{verbatim}
+phon dispersion eigenvectors noden
+
+
+#########################################################################################
+#-------------------------LJ Potential---------------------------------------------------
+#########################################################################################
+
+#lennard epsilon 12 6 inter
+#Ar core Ar core 0.010423316 3.4 0 8.5 0 0
+
+lennard 12 6 
+Ar core Ar core 99497.66760 64.40793836 0.0 8.5
+
+#cutp 8.5
+
+#########################################################################################
+#------------------------Primitive-------------------------------------------------------
+#########################################################################################
+
+#alat(0K) = 2.6343
+
+#vectors 
+#0.000000    2.6581      2.6581
+#2.6581      0.000000    2.6581
+#2.6581      2.6581      0.000000
+#1 1 1 1 1 1
+#frac
+#Ar core  0.00 0.00 0.00 0 1 1 1
+
+#########################################################################################
+#------------------------Conventional----------------------------------------------------
+#########################################################################################
+
+cell 5.3162 5.3162 5.3162 90.0 90.0 90.0 1 1 1 1 1 1
+fractional
+Ar core  0.0  0.0  0.0   0 1 1 1
+Ar core  0.5  0.5  0.0   0 1 1 1
+Ar core  0.5  0.0  0.5   0 1 1 1
+Ar core  0.0  0.5  0.5   0 1 1 1
+
+
+#########################################################################################
+#------------------------Phonon----------------------------------------------------------
+#########################################################################################
+
+dispersion
+0.0 0.0 0.0 to 0.0 0.0 0.0
+\end{verbatim}
+\subsection*{Pseudocode of NMD+SED script}
+\begin{verbatim}
+%load GULP and LAMMPS data
+vel=load('MD.vel')
+eig=load('GULP.dat')
+spatial = load('kpoints.dat')
+%function to arrange eigenvectors to match respective unit cells
+arrange(vel,eig)
+for imode = 1:NUM_MODES
+       for ikpt = 1:NUM_KPTS
+		%NMD
+                qdot= sum(vel*eig(imode,ikpt)*spatial)
+		%Reduce noise
+                qxcorr = xcorr(QDOT)
+		%SED
+                qfftxorr = fft(qxcorr)      
+       end 
+       SED(:,:,imode) = SED(:,:,imode)+qfftxorr;
+end 
+\end{verbatim}
+

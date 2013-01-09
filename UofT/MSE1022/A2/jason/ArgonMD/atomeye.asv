@@ -1,0 +1,4 @@
+function kinetic=atomeye(time,x,indet_letter)
+%output CHIME format
+
+%IN PROGRESS

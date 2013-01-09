@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A8}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+
+\section*{Problem 1}
+
+\begin{itemize}
+\item I. At high temperature, we observe a linear trend of increasing resistivity with temperature. This trend is associated with the increasing number of interactions between phonons and electrons. In the particle picture, the cross-section of phonons as well as the number of phonons increases with temperature. Consequently, electrons will experience more randomizing collisions with phonons. At these temperatures, the presence of impurities offers a negligible contribution to the resistivity. 
+\item II. At low temperature, the presence of impurities plays a larger role in contributing to the resistivity. At these temperatures, the electron scarcely interacts with phonons (in terms of collision cross-section, the diameter of the phonons is reduced as well as the number of phonons present). The decrease in phonon scattering is balanced by impurity scattering, as depicted by the constant resistivity at lower temperatures. Since electrons are carrying less thermal energy (e.i.: a lower velocity), there is an increase in the interaction time between electrons and impurities, leading to more effective scattering events (e.i.: the collision have a more randomizing effect upon the velocity of an electron). 
+\end{itemize}
+\section*{Problem 2}
+Mobility is defined as:
+\begin{align*}
+	\mu &= \frac{e\bar{\tau}}{m}
+\end{align*}
+Rearranging for the relaxation time:
+\begin{align*}
+	\bar{\tau} &= \frac{m\mu}{e}
+\end{align*}
+Since everything is in S.I, we can plug in for the average relaxation time of electrons:
+\begin{align*}
+	\bar{\tau} &= \frac{0.259m_0 \unit{kg}*0.1350 \unit{m^2V^{-1}s^{-1}}}{1.602E-19 \unit{C}}\\
+	     &=1.988E-13 \unit{s}	
+\end{align*}
+And the average relaxation time for holes:
+\begin{align*}
+	\bar{\tau} &= \frac{0.587m_0 \unit{kg}*0.0480 \unit{m^2V^{-1}s^{-1}}}{1.602E-19 \unit{C}}\\
+             &=1.602E-13 \unit{s}
+\end{align*}
+\section*{Problem 3}
+The relaxation time (resistivity is the reciprocal of conductivity):
+\begin{align*}
+	\bar{\tau} &= \frac{m\sigma}{ne^2}\\
+             &=\frac{(9.10938291E-31 \unit{kg})(\frac{1}{1.77E-8 \unit{\Omega m}})}{\frac{4}{(3.61E-10 \unit{m})^3} (1.602E-19 \unit{C})^2}\\
+             &=2.358E-14 \unit {s}\\
+\end{align*}
+The average speed (only concerned about the magnitude of the velocity):
+\begin{align*}
+	\bar{v} &= \frac{\sigma E_0}{ne}\\
+             &=\frac{(\frac{1}{1.77E-8 \unit{\Omega m}}) 100 \units{Vm^{-1}}}{\frac{4}{(3.61E-10 \unit{m})^3} (1.602E-19 \unit{C})}\\
+     &=0.415 \units{ms^{-1}}\\
+\end{align*}
+\end{document}
+

@@ -1,0 +1,20 @@
+function p=momentum(N,p_half,F,t_step,eta_t,eps_p)
+
+for i=1:N
+    for k=1:3
+            p(i,k) = p_half(i,k) + F(i,k)*
+           %p(i,k) = (p_half(i,k) + F(i,k)*0.5*t_step)/(1. + (eta_t+eps_p)*0.5*t_step);
+    end
+end
+
+
+% C Code
+% 			// find momenta at t+delt
+% 			for (i=0; i<N; i++){
+% 				for (k=0; k<3; k++) {
+% 					if (quench == true) p[i][k] = (p_half[i][k] + F[i][k]*0.5*t_step)/(1. + 0.5*eta*t_step);
+% 					else p[i][k] = (p_half[i][k] + F[i][k]*0.5*t_step)/(1. + (eta_t+eps_p)*0.5*t_step);
+% 				}
+% 			}	
+
+

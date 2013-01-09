@@ -1,0 +1,10 @@
+function v = initial_vel(N)
+
+v = rand(N,3); % random velocities from 0 to 1
+v1m=mean(v
+for i=1:N
+for j=1:3
+v(i,j) = 2*v(i,j) - mean(v(:,j)); % random velocities from -1 to 1
+end
+end
+

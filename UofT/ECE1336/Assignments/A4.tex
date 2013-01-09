@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{ECE1336:A4}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+
+\section*{Problem 1}
+
+For long wavelengths much greater than twice the interatomic distance:
+\begin{align*}
+	v_p &= a\sqrt{\frac{\beta}{m}}
+\\     \beta &= \frac{v_p^2m}{a^2}=\frac{(1.08E4)^2(6.81E-26)}{(4.85E-10)^2}
+\\		&=33.77 [N/m]
+\end{align*}
+To determine if the human ear will be to hear this vibration without much dispersion, assume $k=0.01 \frac{\pi}{a}$ (for long wavelength limit $k<<\frac{\pi}{a})$ for order of magnitude approximations:
+\begin{align*}
+	\omega &= 0.01 \pi a \sqrt{\frac{\beta}{m}}
+\\      &= 338.95 [Hz]
+\end{align*}
+This frequency lies between the audible range of 20 to 20000Hz. In the long wavelength limit, the phase velocity is not a strong function of frequency, and therefore the the sound will be audible to a typical human without much dispersion.
+
+\section*{Problem 2}
+For N=6.00E8 atoms and $a=5 \unit{A}$, the propagation constant is (assuming periodic boundary conditions):
+\begin{align*}
+	k &= \frac{\pi}{a(N-1)},\frac{2\pi}{a(N-1)},...,\frac{\pi}{a}
+\\      k &= \frac{\pi}{5.00(6.00E8-1)},\frac{2\pi}{5.00(6.00E8-1)},...,\frac{\pi}{5.00}
+\end{align*}
+Where interval between allowed values of the propagation constant are:
+\begin{align*}
+	\frac{2\pi}{a(N-1)}-\frac{\pi}{a(N-1)}&=\frac{1}{5.00(6.00E8-1)}
+\end{align*}
+For N=12.00E8 atoms and $a=5 \unit{A}$, the propagation constant is (assuming periodic boundary conditions):
+\begin{align*}
+	k &= \frac{\pi}{a(N-1)},\frac{2\pi}{a(N-1)},...,\frac{\pi}{a}
+\\      k &= \frac{\pi}{5.00(12.00E8-1)},\frac{2\pi}{5.00(12.00E8-1)},...,\frac{\pi}{5.00}
+\end{align*}
+Where interval between allowed values of the propagation constant are:
+\begin{align*}
+	\frac{2\pi}{a(N-1)}-\frac{\pi}{a(N-1)}&=\frac{1}{5.00(12.00E8-1)}
+\end{align*}
+Increasing the number of atoms in the chain, decreases the interval of betweened allowed propagation constants (inversely related). Increasing the number of atoms, when the number of atoms is large, proprotionally increases the number of normal modes.
+
+\section*{Problem 3}
+
+The motion of the finger being rubbed along the rim of a glass is broken up with points where the finger slides and where the finger slips, known as the slip-stick phenomenon. The result is a periodic force input upon the glass. The sides of the glass correspondingly responds by vibrating at a certain, typically high, freqency which then propagates through the air to reach the listener's ears.
+
+\end{document}
+

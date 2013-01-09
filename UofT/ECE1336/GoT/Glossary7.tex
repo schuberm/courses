@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Samuel Huberman}
+\chead{Topic 7}
+\rhead{999157923}
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\section*{Boltzmann Equation and the Mean Free Path}
+\textbf{Distribution function $f(x,y,z,p_x,p_y,p_z)$}: A statistical description of of the number of particles per quantum state in the given region of phase space.
+\newline
+\textbf{Change df occurring in time dt due to force $F=dp/dt$ acting on particles at $x,y,z$}: As a result of the force, the momentum changes of the particles is described as motion from one region in momentum space to another. The change in the distriution as a result is seen in 7.2-1.
+\newline
+\textbf{Change due to collisions or scattering interactions $(df/dt)col$}: Collisions and scattering involving other particles or external centers can transfers particles from region of phase space to another. The collision operator represents the change the the distribution as a result of interactions. 
+\newline
+\textbf{Boltzmann equation}: The differential description of the change in the distribution function with respect to time is the Boltzmann equation. 
+\newline
+\textbf{Relaxation time or mean free time}: The time between randomizing collisions. The relaxation time approximation is the descritization of the collision operator by taking the difference between the perturbed and unpertubed distribution over the relaxation time. 
+\newline
+\textbf{Restoring effect of collisions}: Through inspection, the electrons would continue to travel unimpeded after the removal of an applied field. Since this is not the case, the collisions act to restore equilibrium.
+\newline
+\textbf{Drift velocity, current density, conductivity}: Drift velocity is the velocity of electrons opposite to the direction of current. When an electron is accelerated by a field, the drift velocity increases linearly, but is reduced to zero upon experiencing a collision. An average drift velocity relates the applied electric field to the relaxation time, see 7.2-7. Current density is defined as the particle density of electrons multiplied by the average drift velocity of electrons, it's a measure of the flow of charge. Conductivity, the proportionality constant between the current density and the electric field, is represented by equation 7.2-9, giving a value too low by a factor of 2 from improper averaging.
+\newline
+\textbf{Mean free path}: The distance travelled, on average between collisions.
+\section*{Electrical Conductivity of a Free-Electron Gas}
+\textbf{Conditions}: Uniform, isotropic material in steady state under an applied field.
+\newline
+\textbf{Form of the Boltzmann equation}: The spatial and temporal terms, excluding the collision operator, are zero (uniform and steady state). The force from the applied electric field operates on the gradient of momemtum. 
+\newline
+\textbf{Electrical current density, mobility, conductivity, M-B distribution}: Using the M-B distribution, we can find expressions for the current density, mobility and conductivity.
+Current density is determined by the average velocity of an electron in the direction of the applied electric field. The average velocity is found through the standard integration procedure, like finding the centroid. We find that the average velocity depends upon the mean free time (7.3-11). Mobility is the magnitude of the average drift velocity per unit field. 
+\newline
+\textbf{Conductivity and mobility F-D distribution}: After, approximating the Fermi integral as dirac function, we find similar expressions for the conductivity and mobility, except that the mean free time is evaluated at the fermi velocity. The differences between the M-B approach and the F-D approach are manifest themselves through the averaging procedure. 
+\section*{Thermal Conductivity}
+\textbf{Conditions}: A homogeneous, isotropic material and Fermi-Dirac statistics. In this case, we are concerned with a temperature gradient along as single direction in steady state.
+\newline
+\textbf{Boltzmann equation}: See 7.4-1. We have approximated the derivative of the non-equilibrium distribution with respect to direction and velocity with the original equilibrium distribution, because the difference between the distributions is assumed to be small. Unlike the applied electric field case, the gradient in the direction of temperature remains as does an electric field component operating on the momemtum in that direction. This electric field brings about a certain effect.
+\newline
+\textbf{Electrical current density}: Through F-D statistics we arrive at expression 7.4-9, representing the flow of charge along the direction of the temperature gradient.
+\newline
+\textbf{Thermal current density}: The energy carried per particle along the direction of the temperature gradient multiplied by the particle density. Through F-D statistics we arrive at expression 7.4-10.
+\newline
+\textbf{Thermoelectric effect}: The manifestation of an electric field as a direct result of a temperature gradient. Reversely, when an electric field is applied, even if there exists no prior temperature gradient, the heat current remains, known as Thomson heating. 
+\newline
+\textbf{Wiedemann-Franz law}: Experimentally observed that the ratio of thermal conductivity to electrical conductivity is nearly the same for all metallic conductors, independent of temperature. Using the classical picture, we can show that the ratio independent of the mean free path of the electron, however, using Fermi-Dirac statistics, we find the the thermal conductivity is zero. This is a result of the use of the dirac function to approximate the Fermi integral.
+\section*{Scattering Processes}
+\textbf{Collision mechanisms}: In a perfect crystal where all atoms are at their equilibrium position, the electronic potential experienced by the electron would be perfectly periodic so there would be no way to return externally excited electrons to the thermal equilibrium state. When the atoms are vibrating about equilibrium, at an given moment in time, the lattice is aperiodic in shape, perturbing the electronic potential and scattering (or randomizing) the electrons. Higher temperatures are associated with higher scattering rates and decrease in conductivity. Electrons can be scattered by phonons, which are considered to be neutral and more massive than electrons, resulting in large momentum changes in the electron. Impurities in the material like dislocations or grain boundaries also act as scattering mechanisms because of the disturbance in the potential. 
+\newline
+\textbf{Effective relaxation time}: In the presence of multiple scattering mechanisms, there collsion term becomes the sum of both events, each event having a unique relaxation time. The relaxation times can therefore be combined into an effective relaxation time. 
+\newline
+\textbf{Effective mobility}: The addition of mobilities from independent scattering mechanisms can be added reciprocally to give an effective mobility.
+\newline
+\textbf{Hall Effect}: A galvanomagnectic effect, whereby a current flow along a direction with a magnectic field perpendicular to that direction, creates and electric field perpendicular to both. As a result of the lorentz force, an excess concentration of electrons builds up on the edge of the sample until a balancing electrostatic field is generated. The difference in charge across the sample manifest itself as the Hall voltage. The electrons with more velocity, and hence a higher temperature, experience a greater Lorentz force. Consequently, a temperature gradient is generated as well as difference is charge distribution across the sample, creating a voltage disctint from the Hall voltage (Ettingshausen effect). If the electric current was replaced with a thermal current, on average there will be a net transport of faster electrons along the current direction (from hot to cold), and the lorentz for acting upon these electrons creates an electric field (Nernst effect).    
+\newline
+\textbf{Thermal Capacity of Free-Electron Systems}: The heat capacity predicted by combining the lattice contribution through Debye theory and the electron contribution through M-B statistic is contradictory with experiment. Through F-D statistics, the electronic contribution is revealed to be negligible at higher temperatures because only the electrons within a few kT of the surface of the fermi-sphere can receive energy from an external heat source. At low temperatures, the electronic conribution becomes large.
+
+\end{document}
+

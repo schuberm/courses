@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{amsmath,graphicx,parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage[top=3cm,bottom=3cm]{geometry}
+\pagestyle{fancy}
+\lhead{Samuel Cole Huberman}
+\chead{MIE1011: Problem Set 1}
+\rhead{999157923}
+
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\numberwithin{equation}{section}
+
+\begin{document}
+\large
+\section*{Question 1}
+
+A fundamental relation must meet the requirement:
+\begin{align*}
+S(\lambda U, \lambda V, \lambda N_1,...)&=  \lambda S(U, V, N_1,...)
+\end{align*}
+
+For a:
+\begin{align*}
+S&=C\left (\frac{NU}{V}\right )^{\frac{2}{3}}\\
+S(\lambda U, \lambda V, \lambda N)&= C \left( \frac{\lambda^2 NU}{\lambda V} \right )^{\frac{2}{3}}\\
+&=C \lambda ^{\frac{2}{3}}\left (\frac{NU}{V}\right )^{\frac{2}{3}}
+\end{align*}
+$S$ is not a fundamental relation.
+
+For b:
+\begin{align*}
+S&=C\frac{V^3}{NU}\\
+S(\lambda U, \lambda V, \lambda N)&= C\frac{(\lambda V)^3}{\lambda N \lambda U}\\
+&=C \lambda \frac{V^3}{NU}
+\end{align*}
+$S$ is a fundamental relation.
+
+\section*{Question 2}
+
+Given
+\begin{align*}
+T &= \frac{\partial U}{\partial S}_{V,N_1...N_r}\\
+P &= - \frac{\partial U}{\partial V}_{S,N_1...N_r}
+\end{align*}
+We have
+\begin{align*}
+\frac{P}{T}&= -\frac{\partial S}{\partial V}_{V,N_1...N_r}\\
+&=-\frac{\partial S (U,V,N_1...N_r)}{\partial V}\\ 
+\end{align*}
+Check that the above relation is a zero-order homogeneous function
+\begin{align*}
+\frac{\partial S (\lambda U, \lambda V,\lambda N_1... \lambda N_r)}{\partial V}_{\lambda U, \lambda V,\lambda N_1... \lambda N_r}&= \frac{\partial S (\lambda U, \lambda V,\lambda N_1... \lambda N_r)}{\partial \lambda V}\frac{\partial \lambda V}{\partial V}\\
+&=\lambda \frac{\partial S (\lambda U, \lambda V,\lambda N_1... \lambda N_r)}{\partial \lambda V}
+\end{align*}
+Recalling
+\begin{align*}
+ S (\lambda U, \lambda V,\lambda N_1... \lambda N_r)&= \lambda S (U,V,N_1...N_r)\\
+\lambda \frac{\partial S}{\partial V}&=\lambda \frac{\partial S (\lambda U, \lambda V,\lambda N_1... \lambda N_r)}{\partial \lambda V}
+\end{align*}
+Thus $ \frac{P}{T} $ is an intensive property.
+
+\section*{Question 3}
+
+Begin with the entropy formulation
+\begin{align*}
+dS&=\frac{1}{T}dU +\frac{P}{V}dV-\sum_{i=1}^r\frac{\mu_i}{T}dN_i\\
+&=\frac{\partial S}{\partial U}dU+\frac{\partial S}{\partial V}dV+\frac{\partial S}{\partial N_1}dN_1+\frac{\partial S}{\partial N_2}dN_2
+\end{align*}
+From the relation of $S$
+\begin{align*}
+\frac{\partial S}{\partial U}&=\frac{3R(N_1+N_2)}{2U}\\
+\frac{\partial S}{\partial V}&=\frac{R(N_1+N_2)}{V}\\
+\frac{\partial S}{\partial N_i}&=C+R\ln\frac{VU^{\frac{3}{2}}}{(N_1+N_2)^{\frac{5}{2}}}-R\ln\frac{N_i}{N_1+N_2}-\frac{5}{2}R
+\end{align*}
+By matching the differential terms, we find
+\begin{align*}
+\frac{\partial S}{\partial U}&=\frac{1}{T}\\
+U&=\frac{3RT(N_1+N_2)}{2}\\
+\frac{\partial S}{\partial V}&=\frac{P}{V}\\
+P&={R(N_1+N_2)}\\
+\frac{\partial S}{\partial N_1}&=-\frac{\mu_1}{T}\\
+\mu_1&=-T(C+R\ln\frac{V(\frac{3RT}{2})^{\frac{3}{2}}}{(N_1+N_2)}-R\ln\frac{N_1}{N_1+N_2}-\frac{5}{2}R)
+\end{align*}
+
+
+
+\end{document}

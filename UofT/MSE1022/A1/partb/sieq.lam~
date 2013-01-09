@@ -1,0 +1,44 @@
+#sieq.lam
+clear
+units metal
+atom_style atomic
+boundary p s p
+
+lattice diamond 5.43085
+
+region box block 0 3 0 3 0 3
+create_box 1 box
+create_atoms 1 box
+#delete_atoms porosity box 0.00463 482793
+#create_atoms 1 single 0.7 0.3 0.3
+
+pair_style sw
+pair_coeff * * Si.sw Si
+mass 1 28
+neighbor 1.0 bin
+neigh_modify every 1 delay 5 check yes
+
+#velocity all create 1 20199349 dist gaussian
+#velocity all zero linear
+#velocity all zero angular
+
+#log 	si_$x.lammps
+timestep 0.005
+thermo 100
+thermo_style custom step atoms temp pe ke etotal press vol
+#run 100
+dump 1 all cfg 10 Si_*.cfg id type xs ys zs
+#fix 1 all nvt temp 1.0 1.0 1.0
+#run 20000
+#run 100
+#unfix 1
+#fix 1 all box/relax iso 0.0 vmax 0.001
+#run 20000
+#fix 1 all nvt temp 0.0 0.0 0.0
+minimize 0 1.0e-6 1000 100000
+min_style sd
+#run 1000
+
+#next x
+#jump si.lam
+#jump si.lam loop_lattconst
